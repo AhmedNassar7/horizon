@@ -1,0 +1,31 @@
+{
+  "app": {
+    "name": "Horizon",
+    "tagline": "Weather and time, everywhere."
+  },
+  "nav": {
+    "home": "Home",
+    "clocks": "Clocks",
+    "planner": "Planner",
+    "timers": "Timers",
+    "settings": "Settings",
+    "about": "About"
+  },
+  "search": {
+    "placeholder": "Search for a city..."
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "System"
+  },
+  "footer": {
+    "dataSource": "Weather data by Open-Meteo",
+    "sourceCode": "Source code"
+  },
+  "notFound": {
+    "title": "Lost the horizon",
+    "body": "We couldn't find that page.",
+    "backHome": "Back home"
+  }
+}

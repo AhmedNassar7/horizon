@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/outfit';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Ocean & Amber design tokens.
+ * Every color, radius, and font in the app should resolve through these
+ * tokens — never a hardcoded hex/px value in a component. shadcn/ui's
+ * generated components read the semantic --background/--primary/etc.
+ * variables further down, which are themselves derived from this scale.
+ */
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ocean-50: oklch(97% 0.02 230);
+  --color-ocean-100: oklch(93% 0.04 230);
+  --color-ocean-200: oklch(86% 0.07 230);
+  --color-ocean-300: oklch(76% 0.1 230);
+  --color-ocean-400: oklch(66% 0.13 232);
+  --color-ocean-500: oklch(58% 0.15 234); /* sky blue primary, ~#38BDF8 */
+  --color-ocean-600: oklch(48% 0.14 240);
+  --color-ocean-700: oklch(38% 0.11 245);
+  --color-ocean-800: oklch(28% 0.08 250);
+  --color-ocean-900: oklch(20% 0.05 255); /* deep navy base, ~#0F172A */
+  --color-ocean-950: oklch(15% 0.04 258);
+
+  --color-amber-50: oklch(97% 0.03 80);
+  --color-amber-100: oklch(93% 0.06 75);
+  --color-amber-200: oklch(87% 0.1 70);
+  --color-amber-300: oklch(80% 0.14 65);
+  --color-amber-400: oklch(75% 0.16 60);
+  --color-amber-500: oklch(70% 0.17 55); /* amber accent, ~#F59E0B */
+  --color-amber-600: oklch(60% 0.16 50);
+  --color-amber-700: oklch(50% 0.14 45);
+  --color-amber-800: oklch(40% 0.11 45);
+
+  --color-success: oklch(70% 0.15 150);
+  --color-warning: var(--color-amber-500);
+  --color-danger: oklch(58% 0.21 25);
+  --color-info: var(--color-ocean-500);
+
+  --radius-card: 1rem;
+  --radius-control: 0.625rem;
+
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-ocean-500 outline-2 outline-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 rounded-[var(--radius-card)] border shadow-lg backdrop-blur-md;
+  }
+}
+
+/* shadcn/ui semantic tokens — mapped onto the Ocean & Amber scale above,
+   not shadcn's default neutral palette, so generated components inherit
+   our brand automatically. */
+@theme inline {
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: var(--color-ocean-50);
+  --foreground: var(--color-ocean-950);
+  --card: oklch(100% 0 0);
+  --card-foreground: var(--color-ocean-950);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: var(--color-ocean-950);
+  --primary: var(--color-ocean-500);
+  --primary-foreground: var(--color-ocean-50);
+  --secondary: var(--color-ocean-100);
+  --secondary-foreground: var(--color-ocean-900);
+  --muted: var(--color-ocean-100);
+  --muted-foreground: var(--color-ocean-600);
+  --accent: var(--color-amber-100);
+  --accent-foreground: var(--color-amber-700);
+  --destructive: var(--color-danger);
+  --border: var(--color-ocean-200);
+  --input: var(--color-ocean-200);
+  --ring: var(--color-ocean-500);
+  --chart-1: var(--color-ocean-500);
+  --chart-2: var(--color-amber-500);
+  --chart-3: var(--color-ocean-300);
+  --chart-4: var(--color-amber-300);
+  --chart-5: var(--color-ocean-700);
+  --radius: var(--radius-control);
+  --sidebar: var(--color-ocean-50);
+  --sidebar-foreground: var(--color-ocean-950);
+  --sidebar-primary: var(--color-ocean-500);
+  --sidebar-primary-foreground: var(--color-ocean-50);
+  --sidebar-accent: var(--color-ocean-100);
+  --sidebar-accent-foreground: var(--color-ocean-900);
+  --sidebar-border: var(--color-ocean-200);
+  --sidebar-ring: var(--color-ocean-500);
+}
+
+.dark {
+  --background: var(--color-ocean-950);
+  --foreground: var(--color-ocean-50);
+  --card: var(--color-ocean-900);
+  --card-foreground: var(--color-ocean-50);
+  --popover: var(--color-ocean-900);
+  --popover-foreground: var(--color-ocean-50);
+  --primary: var(--color-ocean-400);
+  --primary-foreground: var(--color-ocean-950);
+  --secondary: var(--color-ocean-800);
+  --secondary-foreground: var(--color-ocean-50);
+  --muted: var(--color-ocean-800);
+  --muted-foreground: var(--color-ocean-300);
+  --accent: var(--color-amber-800);
+  --accent-foreground: var(--color-amber-100);
+  --destructive: var(--color-danger);
+  --border: oklch(100% 0 0 / 12%);
+  --input: oklch(100% 0 0 / 15%);
+  --ring: var(--color-ocean-400);
+  --chart-1: var(--color-ocean-400);
+  --chart-2: var(--color-amber-400);
+  --chart-3: var(--color-ocean-300);
+  --chart-4: var(--color-amber-300);
+  --chart-5: var(--color-ocean-200);
+  --sidebar: var(--color-ocean-900);
+  --sidebar-foreground: var(--color-ocean-50);
+  --sidebar-primary: var(--color-ocean-400);
+  --sidebar-primary-foreground: var(--color-ocean-950);
+  --sidebar-accent: var(--color-ocean-800);
+  --sidebar-accent-foreground: var(--color-ocean-50);
+  --sidebar-border: oklch(100% 0 0 / 12%);
+  --sidebar-ring: var(--color-ocean-400);
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta
+      name="description"
+      content="Horizon — global weather and world time in one place. Free, private, installable, and works offline."
+    />
+    <title>Horizon — Weather & Time</title>
+    <!--
+      GitHub Pages SPA clean-URL fallback (spa-github-pages pattern):
+      404.html re-encodes the requested deep link into a query string and redirects
+      here; this script decodes it back into a real path via history.replaceState
+      before React Router ever sees the URL, so a hard refresh on /horizon/clocks
+      lands on the clocks route instead of GitHub's default 404 page.
+    -->
+    <script>
+      ;(function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&')
+            })
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.slice(0, -1) +
+              decoded.shift() +
+              (decoded.length ? '?' + decoded.join('&') : '') +
+              l.hash,
+          )
+        }
+      })(window.location)
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

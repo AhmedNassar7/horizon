@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0" />
+    <title>Horizon — Weather & Time</title>
+    <!--
+      GitHub Pages serves this file for any unknown path under /horizon/.
+      We re-encode the requested deep link as a query string on the real
+      index.html and redirect there; index.html's inline script decodes it
+      back into the real path via history.replaceState. This is the
+      standard spa-github-pages pattern for clean (non-hash) SPA routing.
+    -->
+    <script>
+      var segmentsToKeep = 1 // keep "/horizon" from the pathname
+      var l = window.location
+      var path = l.pathname
+        .split('/')
+        .slice(0, 1 + segmentsToKeep)
+        .join('/')
+      var rest = l.pathname.slice(path.length)
+
+      l.replace(
+        path +
+          '/?/' +
+          rest.slice(1).replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash,
+      )
+    </script>
+  </head>
+  <body></body>
+</html>
