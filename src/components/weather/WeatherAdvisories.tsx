@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import type { Advisory } from '@/lib/advisories'
 
+// Solid surface+text pairs (not translucent) so contrast holds regardless of
+// what's behind the banner — see the token comment in index.css.
 const SEVERITY_STYLES: Record<Advisory['severity'], string> = {
-  moderate:
-    'border-amber-400/50 bg-amber-100/60 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200',
-  severe: 'border-danger/40 bg-danger/10 text-danger',
+  moderate: 'border-warning-text/30 bg-warning-surface text-warning-text',
+  severe: 'border-danger-text/30 bg-danger-surface text-danger-text',
 }
 
 export function WeatherAdvisories({ advisories }: { advisories: Advisory[] }) {
@@ -14,9 +15,12 @@ export function WeatherAdvisories({ advisories }: { advisories: Advisory[] }) {
   if (advisories.length === 0) return null
 
   return (
-    <ul className="flex flex-col gap-2" aria-label="Forecast advisories">
+    // Plain divs, not a <ul>/<li> list: each item's real role is "status" (an
+    // ARIA live region), not "listitem", and mixing the two breaks the
+    // list/listitem structural relationship axe checks for.
+    <div className="flex flex-col gap-2" aria-label="Forecast advisories">
       {advisories.map((advisory) => (
-        <li
+        <div
           key={advisory.id}
           // ARIA live-region status announcement, not a form result — <output> would be wrong here.
           role="status" // oxlint-disable-line prefer-tag-over-role
@@ -27,8 +31,8 @@ export function WeatherAdvisories({ advisories }: { advisories: Advisory[] }) {
         >
           <AlertTriangle aria-hidden="true" className="size-4 shrink-0" />
           {t(advisory.messageKey)}
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   )
 }

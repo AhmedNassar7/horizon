@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import {
   useSettingsStore,
@@ -44,11 +43,7 @@ export default function Settings() {
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-10">
-      <Helmet>
-        <title>
-          {t('settings.title')} — {t('app.name')}
-        </title>
-      </Helmet>
+      <title>{`${t('settings.title')} — ${t('app.name')}`}</title>
 
       <h1 className="font-display text-3xl font-semibold">{t('settings.title')}</h1>
 

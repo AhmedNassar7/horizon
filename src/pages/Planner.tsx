@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -37,11 +36,7 @@ export default function Planner() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
-      <Helmet>
-        <title>
-          {t('planner.title')} — {t('app.name')}
-        </title>
-      </Helmet>
+      <title>{`${t('planner.title')} — ${t('app.name')}`}</title>
 
       {locations.length < 2 ? (
         <div className="mx-auto w-full max-w-2xl py-8 text-center">
@@ -58,7 +53,14 @@ export default function Planner() {
           <h1 className="font-display text-2xl font-semibold">{t('planner.title')}</h1>
           <p className="text-muted-foreground mt-1 text-sm">{t('planner.subtitle')}</p>
 
-          <div className="mt-6 overflow-x-auto">
+          {/* A <section> with an accessible name has an implicit "region" role, and
+              tabIndex here follows the WAI-ARIA APG "scrollable region" pattern so
+              keyboard users can actually scroll this table horizontally. */}
+          <section
+            className="mt-6 overflow-x-auto"
+            tabIndex={0} // oxlint-disable-line no-noninteractive-tabindex
+            aria-label={t('planner.title')}
+          >
             <table className="border-separate border-spacing-1 text-sm">
               <thead>
                 <tr>
@@ -96,7 +98,7 @@ export default function Planner() {
                         className={cn(
                           'min-w-9 rounded px-1 py-1.5 text-center tabular-nums',
                           isBusinessHour(hour)
-                            ? 'bg-success/25 text-success'
+                            ? 'bg-success-surface text-success-text'
                             : 'bg-muted/50 text-muted-foreground',
                           overlapColumns[index] && 'ring-primary ring-2',
                           index === nowHourIndex &&
@@ -110,7 +112,7 @@ export default function Planner() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </section>
         </>
       )}
     </div>

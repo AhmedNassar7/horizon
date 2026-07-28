@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
 const DATA_SOURCE_KEYS = ['openMeteo', 'openMeteoGeocoding', 'bigDataCloud'] as const
@@ -8,11 +7,7 @@ export default function About() {
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-10">
-      <Helmet>
-        <title>
-          {t('about.title')} — {t('app.name')}
-        </title>
-      </Helmet>
+      <title>{`${t('about.title')} — ${t('app.name')}`}</title>
 
       <h1 className="font-display text-3xl font-semibold">{t('about.title')}</h1>
       <p className="text-muted-foreground mt-3">{t('about.intro')}</p>

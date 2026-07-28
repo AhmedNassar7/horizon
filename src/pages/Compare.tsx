@@ -1,6 +1,5 @@
 import { useQueries } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -31,11 +30,7 @@ export default function Compare() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
-      <Helmet>
-        <title>
-          {t('compare.title')} — {t('app.name')}
-        </title>
-      </Helmet>
+      <title>{`${t('compare.title')} — ${t('app.name')}`}</title>
 
       {locations.length === 0 ? (
         <div className="mx-auto w-full max-w-2xl py-8 text-center">

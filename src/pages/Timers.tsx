@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -38,11 +37,7 @@ export default function Timers() {
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8">
-      <Helmet>
-        <title>
-          {t('timers.title')} — {t('app.name')}
-        </title>
-      </Helmet>
+      <title>{`${t('timers.title')} — ${t('app.name')}`}</title>
 
       <h1 className="font-display text-2xl font-semibold">{t('timers.title')}</h1>
 

@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { LocationDashboard } from '@/components/weather/LocationDashboard'
@@ -13,9 +12,7 @@ export default function Location() {
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-8">
-      <Helmet>
-        <title>{location ? `${location.name} — ${t('app.name')}` : t('app.name')}</title>
-      </Helmet>
+      <title>{location ? `${location.name} — ${t('app.name')}` : t('app.name')}</title>
 
       {!location ? (
         <div className="mx-auto w-full max-w-2xl py-8 text-center">

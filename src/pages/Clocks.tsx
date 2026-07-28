@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { CitySearch } from '@/components/search/CitySearch'
@@ -32,11 +31,7 @@ export default function Clocks() {
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8">
-      <Helmet>
-        <title>
-          {t('clocks.title')} — {t('app.name')}
-        </title>
-      </Helmet>
+      <title>{`${t('clocks.title')} — ${t('app.name')}`}</title>
 
       <div>
         <h1 className="font-display text-2xl font-semibold">{t('clocks.title')}</h1>

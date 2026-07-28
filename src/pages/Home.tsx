@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { useGeolocation } from '@/hooks/useGeolocation'
@@ -47,12 +46,8 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>
-          {t('app.name')} — {t('app.tagline')}
-        </title>
-        <meta name="description" content={t('app.tagline')} />
-      </Helmet>
+      <title>{`${t('app.name')} — ${t('app.tagline')}`}</title>
+      <meta name="description" content={t('app.tagline')} />
 
       {!activeLocation ? (
         <div className="mx-auto w-full max-w-2xl px-4 py-16">

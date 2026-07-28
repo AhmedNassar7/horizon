@@ -44,6 +44,21 @@
   --color-danger: oklch(58% 0.21 25);
   --color-info: var(--color-ocean-500);
 
+  /*
+   * Solid surface+text pairs for status badges (AQI levels, advisories,
+   * business-hours cells). Deliberately NOT translucent overlays: a
+   * bg-success/25-style translucent badge composites with whatever sits
+   * behind it — including our weather-reactive gradient background — so
+   * its contrast can't be guaranteed. These are opaque and pre-verified at
+   * ≥4.5:1 (WCAG AA) regardless of backdrop.
+   */
+  --color-success-surface: oklch(93% 0.06 150);
+  --color-success-text: oklch(40% 0.15 150);
+  --color-warning-surface: oklch(93% 0.06 55);
+  --color-warning-text: oklch(40% 0.15 55);
+  --color-danger-surface: oklch(90% 0.07 25);
+  --color-danger-text: oklch(35% 0.19 25);
+
   --radius-card: 1rem;
   --radius-control: 0.625rem;
 
@@ -107,6 +122,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-danger-foreground: var(--danger-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -137,8 +153,14 @@
   --card-foreground: var(--color-ocean-950);
   --popover: oklch(100% 0 0);
   --popover-foreground: var(--color-ocean-950);
-  --primary: var(--color-ocean-500);
+  /* Deliberately darker than --color-ocean-500 (used for icons/accents) —
+     oklch(58%) only reaches 3.7:1 against near-white button text, short of
+     WCAG AA's 4.5:1 for normal-size text; oklch(50%) clears it at ~5.1:1. */
+  --primary: oklch(50% 0.15 234);
   --primary-foreground: var(--color-ocean-50);
+  /* Danger-red text rendered directly on a card/page (not a filled badge —
+     see --color-danger-text for that). Verified ~8:1 against a white card. */
+  --danger-foreground: oklch(45% 0.19 25);
   --secondary: var(--color-ocean-100);
   --secondary-foreground: var(--color-ocean-900);
   --muted: var(--color-ocean-100);
@@ -174,6 +196,8 @@
   --popover-foreground: var(--color-ocean-50);
   --primary: var(--color-ocean-400);
   --primary-foreground: var(--color-ocean-950);
+  /* Verified ~8:1 against the dark ocean-900 card. */
+  --danger-foreground: oklch(78% 0.15 25);
   --secondary: var(--color-ocean-800);
   --secondary-foreground: var(--color-ocean-50);
   --muted: var(--color-ocean-800);

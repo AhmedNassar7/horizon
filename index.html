@@ -7,11 +7,15 @@
     <link rel="apple-touch-icon" href="%BASE_URL%icons/apple-touch-icon-180x180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0F172A" />
-    <meta
-      name="description"
-      content="Horizon — global weather and world time in one place. Free, private, installable, and works offline."
-    />
-    <title>Horizon — Weather & Time</title>
+    <!--
+      No static <title> or <meta name="description"> here on purpose: every
+      page renders its own via React 19's native <title>/<meta> hoisting
+      (see src/pages/*.tsx). React only dedupes tags it rendered itself, not
+      ones already in the static HTML, so a static title here would win over
+      every page's dynamic one (the first <title> in the document wins) and
+      never update. Home.tsx sets the description; a plain-text fallback isn't
+      needed since JS-driven title/meta swap in well before first paint.
+    -->
     <!--
       GitHub Pages SPA clean-URL fallback (spa-github-pages pattern):
       404.html re-encodes the requested deep link into a query string and redirects

@@ -21,7 +21,7 @@ export function CountdownTimerCard({
     <div
       className={cn(
         'glass-card relative flex flex-col gap-2 p-5',
-        isFinished && 'ring-danger ring-2',
+        isFinished && 'ring-danger-foreground ring-2',
       )}
       role={isFinished ? 'alert' : undefined}
     >
@@ -39,7 +39,7 @@ export function CountdownTimerCard({
       <p
         className={cn(
           'font-display text-4xl font-semibold tabular-nums',
-          isFinished && 'text-danger',
+          isFinished && 'text-danger-foreground',
         )}
       >
         {isFinished ? t('timers.timesUp') : formatDuration(remainingMs, { showTenths: false })}

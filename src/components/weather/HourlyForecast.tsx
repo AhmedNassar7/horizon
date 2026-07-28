@@ -59,7 +59,13 @@ export function HourlyForecast({
         </ResponsiveContainer>
       </div>
 
-      <ul className="mt-4 flex gap-4 overflow-x-auto pb-2">
+      {/* tabIndex follows the WAI-ARIA APG "scrollable region" pattern so keyboard
+          users can scroll this horizontally, same as the Planner table. */}
+      <ul
+        className="mt-4 flex gap-4 overflow-x-auto pb-2"
+        tabIndex={0} // oxlint-disable-line no-noninteractive-tabindex
+        aria-label={t('weather.next24Hours')}
+      >
         {next24.map((hour) => (
           <li
             key={hour.time}
