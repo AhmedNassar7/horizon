@@ -4,6 +4,7 @@ import { Layout } from '@/components/layout/Layout'
 
 const Home = lazy(() => import('@/pages/Home'))
 const Location = lazy(() => import('@/pages/Location'))
+const Compare = lazy(() => import('@/pages/Compare'))
 const Clocks = lazy(() => import('@/pages/Clocks'))
 const Planner = lazy(() => import('@/pages/Planner'))
 const Timers = lazy(() => import('@/pages/Timers'))
@@ -17,6 +18,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/location/:slug" element={<Location />} />
+        <Route path="/compare" element={<Compare />} />
         <Route path="/clocks" element={<Clocks />} />
         <Route path="/planner" element={<Planner />} />
         <Route path="/timers" element={<Timers />} />

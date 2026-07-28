@@ -1,22 +1,11 @@
-import { lazy, Suspense, useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useLocationStore } from '@/store/locationStore'
-import { useWeather } from '@/hooks/useWeather'
 import { useGeolocation } from '@/hooks/useGeolocation'
-import { resolveTimezone } from '@/lib/timezone'
-import { CurrentConditions } from '@/components/weather/CurrentConditions'
-import { DailyForecast } from '@/components/weather/DailyForecast'
-
-// Recharts is the single heaviest dependency in this dashboard; splitting it
-// into its own chunk keeps current conditions and the daily list interactive
-// without waiting on the charting library to download.
-const HourlyForecast = lazy(() =>
-  import('@/components/weather/HourlyForecast').then((m) => ({ default: m.HourlyForecast })),
-)
-import { WeatherSkeleton } from '@/components/weather/WeatherSkeleton'
-import { WeatherErrorState } from '@/components/weather/WeatherErrorState'
+import { LocationDashboard } from '@/components/weather/LocationDashboard'
 import { LocationEmptyState } from '@/components/weather/LocationEmptyState'
 import { CitySearch } from '@/components/search/CitySearch'
-import { Clock } from '@/components/time/Clock'
+import { Button } from '@/components/ui/button'
 import type { CityResult } from '@/schemas/geocoding'
 
 export default function Home() {
@@ -42,18 +31,6 @@ export default function Home() {
     })
   }, [geolocation.data, addLocation])
 
-  const weather = useWeather(
-    activeLocation?.latitude ?? 0,
-    activeLocation?.longitude ?? 0,
-    activeLocation != null,
-  )
-
-  const timezone = useMemo(
-    () =>
-      activeLocation ? resolveTimezone(activeLocation.latitude, activeLocation.longitude) : null,
-    [activeLocation],
-  )
-
   const handleSelectCity = (city: CityResult) => {
     addLocation({
       id: String(city.id),
@@ -77,23 +54,14 @@ export default function Home() {
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <CitySearch onSelect={handleSelectCity} />
-        {timezone && <Clock timezone={timezone} className="text-right" />}
+        {locations.length > 1 && (
+          <Button asChild variant="outline" size="sm">
+            <Link to="/compare">Compare</Link>
+          </Button>
+        )}
       </div>
 
-      {weather.isPending && <WeatherSkeleton />}
-      {weather.isError && <WeatherErrorState onRetry={() => weather.refetch()} />}
-      {weather.data && (
-        <>
-          <CurrentConditions
-            current={weather.data.current}
-            locationName={[activeLocation.name, activeLocation.country].filter(Boolean).join(', ')}
-          />
-          <Suspense fallback={<div className="glass-card h-56 animate-pulse" />}>
-            <HourlyForecast hours={weather.data.hourly} timezone={weather.data.timezone} />
-          </Suspense>
-          <DailyForecast days={weather.data.daily} />
-        </>
-      )}
+      <LocationDashboard location={activeLocation} />
     </div>
   )
 }
