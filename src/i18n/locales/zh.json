@@ -3,6 +3,10 @@
     "name": "Horizon",
     "tagline": "天气与时间，无处不在。"
   },
+  "install": {
+    "button": "安装应用",
+    "aria": "将 Horizon 安装为应用"
+  },
   "nav": {
     "home": "首页",
     "clocks": "世界时钟",

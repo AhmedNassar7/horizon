@@ -3,6 +3,10 @@
     "name": "Horizon",
     "tagline": "Clima y hora, en todas partes."
   },
+  "install": {
+    "button": "Instalar app",
+    "aria": "Instalar Horizon como aplicación"
+  },
   "nav": {
     "home": "Inicio",
     "clocks": "Relojes",

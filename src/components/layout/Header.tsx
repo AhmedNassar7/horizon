@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Compass, Sun, Moon, MonitorCog } from 'lucide-react'
+import { Compass, Sun, Moon, MonitorCog, Download } from 'lucide-react'
 import { useTheme } from '@/hooks/useTheme'
+import { useInstallPrompt } from '@/hooks/useInstallPrompt'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { ThemeMode } from '@/store/settingsStore'
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
 export function Header() {
   const { t } = useTranslation()
   const { theme, setTheme } = useTheme()
+  const { canInstall, promptInstall } = useInstallPrompt()
   const ThemeIcon = THEME_ICON[theme]
 
   const cycleTheme = () => {
@@ -61,6 +63,17 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1">
+          {canInstall && (
+            <Button
+              variant="ghost"
+              size="sm"
+              aria-label={t('install.aria')}
+              onClick={promptInstall}
+            >
+              <Download aria-hidden="true" className="size-4" />
+              <span className="hidden sm:inline">{t('install.button')}</span>
+            </Button>
+          )}
           <Button
             variant="ghost"
             size="icon"

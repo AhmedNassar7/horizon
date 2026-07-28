@@ -3,6 +3,10 @@
     "name": "Horizon",
     "tagline": "الطقس والوقت، في كل مكان."
   },
+  "install": {
+    "button": "تثبيت التطبيق",
+    "aria": "تثبيت Horizon كتطبيق"
+  },
   "nav": {
     "home": "الرئيسية",
     "clocks": "الساعات",
