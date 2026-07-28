@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import { getUtcOffsetMinutes, isDaytime, resolveTimezone } from './timezone'
+import {
+  formatUtcOffset,
+  getDayOffset,
+  getLocalHour,
+  getRelativeOffsetHours,
+  getUtcOffsetMinutes,
+  isDaytime,
+  resolveTimezone,
+} from './timezone'
 
 describe('resolveTimezone', () => {
   it('resolves the IANA timezone for known coordinates', () => {
@@ -17,6 +25,43 @@ describe('getUtcOffsetMinutes', () => {
     expect(getUtcOffsetMinutes('America/New_York', new Date('2026-01-15T12:00:00Z'))).toBeLessThan(
       0,
     )
+  })
+})
+
+describe('formatUtcOffset', () => {
+  it('formats a whole-hour offset', () => {
+    expect(formatUtcOffset('Asia/Tokyo', new Date('2026-01-15T12:00:00Z'))).toBe('UTC+9')
+  })
+
+  it('formats a half-hour offset', () => {
+    expect(formatUtcOffset('Asia/Kolkata', new Date('2026-01-15T12:00:00Z'))).toBe('UTC+5:30')
+  })
+})
+
+describe('getDayOffset', () => {
+  it('returns 0 for the same timezone as the viewer', () => {
+    const viewerTz = Intl.DateTimeFormat().resolvedOptions().timeZone
+    expect(getDayOffset(viewerTz, new Date('2026-07-28T12:00:00Z'))).toBe(0)
+  })
+
+  it('returns a non-zero offset for a timezone on a different calendar day', () => {
+    // Far ahead of UTC, so late evening UTC is already "tomorrow" there.
+    const offset = getDayOffset('Pacific/Kiritimati', new Date('2026-07-28T23:00:00Z'))
+    expect(Math.abs(offset)).toBeLessThanOrEqual(1)
+  })
+})
+
+describe('getLocalHour', () => {
+  it('returns the correct local hour for a known offset', () => {
+    expect(getLocalHour(new Date('2026-01-15T12:00:00Z'), 'Asia/Tokyo')).toBe(21)
+    expect(getLocalHour(new Date('2026-01-15T00:00:00Z'), 'UTC')).toBe(0)
+  })
+})
+
+describe('getRelativeOffsetHours', () => {
+  it("returns 0 relative to the viewer's own timezone", () => {
+    const viewerTz = Intl.DateTimeFormat().resolvedOptions().timeZone
+    expect(getRelativeOffsetHours(viewerTz, new Date('2026-01-15T12:00:00Z'))).toBe(0)
   })
 })
 
