@@ -1,0 +1,222 @@
+{
+  "app": {
+    "name": "Horizon",
+    "tagline": "Météo et heure, partout."
+  },
+  "nav": {
+    "home": "Accueil",
+    "clocks": "Horloges",
+    "planner": "Planificateur",
+    "timers": "Minuteries",
+    "settings": "Réglages",
+    "about": "À propos",
+    "compare": "Comparer"
+  },
+  "search": {
+    "placeholder": "Rechercher une ville...",
+    "noResults": "Aucune ville trouvée.",
+    "searching": "Recherche…"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "auto": "Système"
+  },
+  "footer": {
+    "dataSource": "Données météo par Open-Meteo",
+    "sourceCode": "Code source"
+  },
+  "notFound": {
+    "title": "Horizon perdu",
+    "body": "Nous n'avons pas trouvé cette page.",
+    "backHome": "Retour à l'accueil"
+  },
+  "home": {
+    "findingLocation": "Recherche de votre position…",
+    "getStarted": "Trouvons votre météo",
+    "getStartedBody": "Recherchez une ville pour commencer, ou autorisez l'accès à la position."
+  },
+  "weather": {
+    "feelsLike": "Ressenti",
+    "humidity": "Humidité",
+    "wind": "Vent",
+    "pressure": "Pression",
+    "cloudCover": "Couverture nuageuse",
+    "next24Hours": "Prochaines 24 heures",
+    "temperature": "Température",
+    "sevenDayForecast": "Prévisions sur 7 jours",
+    "today": "Aujourd'hui",
+    "loading": "Chargement de la météo…",
+    "errorTitle": "Impossible de charger la météo",
+    "errorBody": "Vérifiez votre connexion et réessayez — Horizon continuera d'afficher les dernières données disponibles.",
+    "retry": "Réessayer",
+    "sunrise": "Lever du soleil",
+    "sunset": "Coucher du soleil",
+    "moonPhase": "Phase lunaire",
+    "airQuality": "Qualité de l'air",
+    "usAqi": "AQI américain",
+    "europeanAqi": "AQI européen",
+    "code": {
+      "0": "Ciel dégagé",
+      "1": "Généralement dégagé",
+      "2": "Partiellement nuageux",
+      "3": "Couvert",
+      "45": "Brouillard",
+      "48": "Brouillard givrant",
+      "51": "Bruine légère",
+      "53": "Bruine modérée",
+      "55": "Bruine dense",
+      "56": "Bruine verglaçante légère",
+      "57": "Bruine verglaçante dense",
+      "61": "Pluie légère",
+      "63": "Pluie modérée",
+      "65": "Pluie forte",
+      "66": "Pluie verglaçante légère",
+      "67": "Pluie verglaçante forte",
+      "71": "Chute de neige légère",
+      "73": "Chute de neige modérée",
+      "75": "Chute de neige forte",
+      "77": "Grains de neige",
+      "80": "Averses de pluie légères",
+      "81": "Averses de pluie modérées",
+      "82": "Averses de pluie violentes",
+      "85": "Averses de neige légères",
+      "86": "Averses de neige fortes",
+      "95": "Orage",
+      "96": "Orage avec grêle légère",
+      "99": "Orage avec grêle forte",
+      "unknown": "Inconnu"
+    },
+    "advisory": {
+      "thunderstorm": "Orages dans la région",
+      "severePrecip": "Fortes précipitations attendues",
+      "windSevere": "Fortes rafales de vent attendues",
+      "windModerate": "Conditions venteuses avec rafales",
+      "uv": "Indice UV très élevé — limitez l'exposition au soleil",
+      "precipProbability": "Forte probabilité de pluie aujourd'hui"
+    },
+    "aqiLevel": {
+      "unknown": { "label": "Inconnu", "advice": "Aucune donnée de qualité de l'air disponible." },
+      "good": { "label": "Bonne", "advice": "La qualité de l'air est satisfaisante pour tous." },
+      "moderate": {
+        "label": "Modérée",
+        "advice": "Les personnes inhabituellement sensibles devraient limiter les efforts prolongés en extérieur."
+      },
+      "sensitive": {
+        "label": "Mauvaise pour les groupes sensibles",
+        "advice": "Les personnes souffrant de troubles respiratoires ou cardiaques, les enfants et les personnes âgées devraient réduire les efforts prolongés en extérieur."
+      },
+      "unhealthy": {
+        "label": "Mauvaise",
+        "advice": "Tout le monde devrait réduire les efforts prolongés en extérieur."
+      },
+      "veryUnhealthy": {
+        "label": "Très mauvaise",
+        "advice": "Tout le monde devrait éviter les efforts prolongés en extérieur."
+      },
+      "hazardous": {
+        "label": "Dangereuse",
+        "advice": "Tout le monde devrait éviter tout effort en extérieur."
+      }
+    },
+    "moon": {
+      "newMoon": "Nouvelle lune",
+      "waxingCrescent": "Premier croissant",
+      "firstQuarter": "Premier quartier",
+      "waxingGibbous": "Gibbeuse croissante",
+      "fullMoon": "Pleine lune",
+      "waningGibbous": "Gibbeuse décroissante",
+      "lastQuarter": "Dernier quartier",
+      "waningCrescent": "Dernier croissant"
+    }
+  },
+  "compare": {
+    "title": "Comparer les lieux",
+    "empty": "Aucun lieu enregistré pour l'instant",
+    "emptyBody": "Recherchez une ville pour commencer à comparer.",
+    "loadError": "Impossible de charger la météo."
+  },
+  "location": {
+    "notFound": "Lieu introuvable",
+    "notFoundBody": "Il a peut-être été supprimé de vos lieux enregistrés."
+  },
+  "clocks": {
+    "title": "Horloges mondiales",
+    "subtitle": "Heure locale en direct pour chaque lieu suivi.",
+    "empty": "Aucun lieu enregistré pour l'instant — recherchez une ville ci-dessus pour en ajouter un.",
+    "removeAria": "Retirer {{name}} des horloges mondiales",
+    "tomorrow": "Demain",
+    "yesterday": "Hier",
+    "srCurrentTime": "Heure actuelle {{time}}"
+  },
+  "timeDifference": {
+    "title": "Décalage horaire",
+    "subtitle": "Recherchez n'importe quelle ville pour voir son avance ou son retard par rapport à vous en ce moment.",
+    "sameTime": "Même heure que vous",
+    "hourAhead_one": "{{count}} heure d'avance sur vous",
+    "hourAhead_other": "{{count}} heures d'avance sur vous",
+    "hourBehind_one": "{{count}} heure de retard sur vous",
+    "hourBehind_other": "{{count}} heures de retard sur vous",
+    "removeAria": "Retirer {{name}}"
+  },
+  "planner": {
+    "title": "Planificateur de réunions",
+    "subtitle": "Chaque colonne représente une heure de votre journée. Le vert indique les heures de bureau (9h–17h) à cet endroit ; la colonne surlignée est un bon moment pour tout le monde.",
+    "needTwo": "Ajoutez au moins deux lieux pour planifier une réunion",
+    "saveLocations": "Enregistrez des lieux",
+    "needTwoBody": "pour voir quand tout le monde est éveillé et disponible.",
+    "location": "Lieu"
+  },
+  "timers": {
+    "title": "Minuteries",
+    "label": "Libellé",
+    "minutes": "Minutes",
+    "seconds": "Secondes",
+    "addTimer": "Ajouter une minuterie",
+    "labelPlaceholder": "Pâtes",
+    "defaultLabel": "Minuterie",
+    "timesUp": "Temps écoulé !",
+    "start": "Démarrer",
+    "resume": "Reprendre",
+    "pause": "Pause",
+    "reset": "Réinitialiser",
+    "lap": "Tour",
+    "lapNumber": "Tour {{number}}",
+    "removeAria": "Retirer la minuterie {{label}}",
+    "stopwatch": "Chronomètre"
+  },
+  "settings": {
+    "title": "Réglages",
+    "theme": "Thème",
+    "themeBody": "Clair, sombre, ou selon le système.",
+    "temperature": "Température",
+    "temperatureBody": "Celsius ou Fahrenheit.",
+    "clockFormat": "Format de l'heure",
+    "clockFormatBody": "Format 24 heures ou 12 heures.",
+    "windSpeed": "Vitesse du vent",
+    "windSpeedBody": "Unité utilisée pour les relevés de vent.",
+    "language": "Langue",
+    "languageBody": "Langue utilisée dans toute l'application."
+  },
+  "about": {
+    "title": "À propos de Horizon",
+    "intro": "Horizon est une application météo et d'heure mondiale gratuite, entièrement côté client. Tout fonctionne dans votre navigateur — pas de serveur, pas de compte, aucun suivi.",
+    "dataSources": "Sources de données",
+    "privacy": "Confidentialité",
+    "privacyBody": "Pas de comptes, pas de cookies, pas de traceurs analytiques. Vos lieux enregistrés et préférences sont stockés uniquement dans le stockage local de votre navigateur.",
+    "sources": {
+      "openMeteo": {
+        "name": "Open-Meteo",
+        "use": "Conditions actuelles, prévisions horaires/quotidiennes, qualité de l'air, avis météorologiques"
+      },
+      "openMeteoGeocoding": {
+        "name": "Géocodage Open-Meteo",
+        "use": "Recherche de villes et coordonnées"
+      },
+      "bigDataCloud": {
+        "name": "BigDataCloud",
+        "use": "Géocodage inverse et localisation de secours par IP"
+      }
+    }
+  }
+}

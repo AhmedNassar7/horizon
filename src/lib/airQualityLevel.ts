@@ -1,58 +1,57 @@
 export interface AirQualityLevel {
-  label: string
-  healthAdvice: string
+  labelKey: string
+  adviceKey: string
   colorClass: string
 }
 
-/** US EPA AQI breakpoints (0-500 scale). */
+/** US EPA AQI breakpoints (0-500 scale). Labels/advice are i18next keys
+ * (`weather.aqiLevel.*`), resolved by the component that renders them. */
 export function getAirQualityLevel(usAqi: number | null): AirQualityLevel {
   if (usAqi == null) {
     return {
-      label: 'Unknown',
-      healthAdvice: 'No air quality data available.',
+      labelKey: 'weather.aqiLevel.unknown.label',
+      adviceKey: 'weather.aqiLevel.unknown.advice',
       colorClass: 'bg-muted text-muted-foreground',
     }
   }
   if (usAqi <= 50) {
     return {
-      label: 'Good',
-      healthAdvice: 'Air quality is satisfactory for everyone.',
+      labelKey: 'weather.aqiLevel.good.label',
+      adviceKey: 'weather.aqiLevel.good.advice',
       colorClass: 'bg-success/15 text-success',
     }
   }
   if (usAqi <= 100) {
     return {
-      label: 'Moderate',
-      healthAdvice:
-        'Unusually sensitive people should consider limiting prolonged outdoor exertion.',
+      labelKey: 'weather.aqiLevel.moderate.label',
+      adviceKey: 'weather.aqiLevel.moderate.advice',
       colorClass: 'bg-amber-200/60 text-amber-700 dark:bg-amber-800/40 dark:text-amber-200',
     }
   }
   if (usAqi <= 150) {
     return {
-      label: 'Unhealthy for sensitive groups',
-      healthAdvice:
-        'People with respiratory or heart conditions, children, and older adults should reduce prolonged outdoor exertion.',
+      labelKey: 'weather.aqiLevel.sensitive.label',
+      adviceKey: 'weather.aqiLevel.sensitive.advice',
       colorClass: 'bg-amber-300/70 text-amber-800 dark:bg-amber-700/50 dark:text-amber-100',
     }
   }
   if (usAqi <= 200) {
     return {
-      label: 'Unhealthy',
-      healthAdvice: 'Everyone should reduce prolonged outdoor exertion.',
+      labelKey: 'weather.aqiLevel.unhealthy.label',
+      adviceKey: 'weather.aqiLevel.unhealthy.advice',
       colorClass: 'bg-danger/20 text-danger',
     }
   }
   if (usAqi <= 300) {
     return {
-      label: 'Very unhealthy',
-      healthAdvice: 'Everyone should avoid prolonged outdoor exertion.',
+      labelKey: 'weather.aqiLevel.veryUnhealthy.label',
+      adviceKey: 'weather.aqiLevel.veryUnhealthy.advice',
       colorClass: 'bg-danger/30 text-danger',
     }
   }
   return {
-    label: 'Hazardous',
-    healthAdvice: 'Everyone should avoid all outdoor exertion.',
+    labelKey: 'weather.aqiLevel.hazardous.label',
+    adviceKey: 'weather.aqiLevel.hazardous.advice',
     colorClass: 'bg-danger/40 text-danger',
   }
 }

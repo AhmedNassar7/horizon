@@ -1,13 +1,14 @@
 import { Sun, Moon, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { formatUtcOffset, getDayOffset, getLocalHour, resolveTimezone } from '@/lib/timezone'
 import { Button } from '@/components/ui/button'
 import { Clock } from '@/components/time/Clock'
 import type { SavedLocation } from '@/store/locationStore'
 
-function dayOffsetLabel(offset: number): string | null {
+function dayOffsetLabel(offset: number, t: (key: string) => string): string | null {
   if (offset === 0) return null
-  if (offset === 1) return 'Tomorrow'
-  if (offset === -1) return 'Yesterday'
+  if (offset === 1) return t('clocks.tomorrow')
+  if (offset === -1) return t('clocks.yesterday')
   return offset > 0 ? `+${offset}d` : `${offset}d`
 }
 
@@ -20,10 +21,11 @@ export function WorldClockCard({
   now: Date
   onRemove: () => void
 }) {
+  const { t } = useTranslation()
   const timezone = resolveTimezone(location.latitude, location.longitude)
   const localHour = getLocalHour(now, timezone)
   const isDay = localHour >= 6 && localHour < 18
-  const dayLabel = dayOffsetLabel(getDayOffset(timezone, now))
+  const dayLabel = dayOffsetLabel(getDayOffset(timezone, now), t)
 
   return (
     <div className="glass-card relative flex flex-col gap-2 p-5">
@@ -32,7 +34,7 @@ export function WorldClockCard({
         size="icon-sm"
         className="absolute top-2 right-2"
         onClick={onRemove}
-        aria-label={`Remove ${location.name} from world clocks`}
+        aria-label={t('clocks.removeAria', { name: location.name })}
       >
         <X aria-hidden="true" className="size-4" />
       </Button>

@@ -6,7 +6,7 @@ export type AdvisorySeverity = 'moderate' | 'severe'
 export interface Advisory {
   id: string
   severity: AdvisorySeverity
-  message: string
+  messageKey: string
 }
 
 /**
@@ -14,7 +14,8 @@ export interface Advisory {
  * Open-Meteo doesn't provide one, and there's no free, global, keyless
  * equivalent. These are honestly-labeled advisories computed from
  * thresholds in the forecast data we already have, not a substitute for an
- * official warning.
+ * official warning. Messages are translation keys (`weather.advisory.*`),
+ * resolved via i18next by the component that renders them.
  */
 export function computeAdvisories(
   current: CurrentConditions,
@@ -27,32 +28,28 @@ export function computeAdvisories(
     advisories.push({
       id: 'thunderstorm',
       severity: 'severe',
-      message: 'Thunderstorms in the area',
+      messageKey: 'weather.advisory.thunderstorm',
     })
   } else if (codeSeverity === 'severe') {
     advisories.push({
       id: 'severe-precip',
       severity: 'severe',
-      message: 'Heavy precipitation expected',
+      messageKey: 'weather.advisory.severePrecip',
     })
   }
 
   if (current.windGustsKmh >= 70) {
-    advisories.push({ id: 'wind', severity: 'severe', message: 'Strong wind gusts expected' })
+    advisories.push({ id: 'wind', severity: 'severe', messageKey: 'weather.advisory.windSevere' })
   } else if (current.windGustsKmh >= 50) {
     advisories.push({
       id: 'wind',
       severity: 'moderate',
-      message: 'Breezy conditions with gusty wind',
+      messageKey: 'weather.advisory.windModerate',
     })
   }
 
   if (today?.uvIndexMax != null && today.uvIndexMax >= 8) {
-    advisories.push({
-      id: 'uv',
-      severity: 'moderate',
-      message: 'Very high UV — limit sun exposure',
-    })
+    advisories.push({ id: 'uv', severity: 'moderate', messageKey: 'weather.advisory.uv' })
   }
 
   if (
@@ -62,7 +59,7 @@ export function computeAdvisories(
     advisories.push({
       id: 'precip-probability',
       severity: 'moderate',
-      message: 'High chance of rain today',
+      messageKey: 'weather.advisory.precipProbability',
     })
   }
 

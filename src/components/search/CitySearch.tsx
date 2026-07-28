@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Loader2, MapPin } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/popover'
 import {
@@ -13,6 +14,7 @@ import { useCitySearch } from '@/hooks/useCitySearch'
 import type { CityResult } from '@/schemas/geocoding'
 
 export function CitySearch({ onSelect }: { onSelect: (city: CityResult) => void }) {
+  const { t } = useTranslation()
   const [query, setQuery] = useState('')
   const inputId = useId()
 
@@ -29,13 +31,13 @@ export function CitySearch({ onSelect }: { onSelect: (city: CityResult) => void 
       <PopoverAnchor asChild>
         <div className="relative w-full max-w-md">
           <label htmlFor={inputId} className="sr-only">
-            Search for a city
+            {t('search.placeholder')}
           </label>
           <Input
             id={inputId}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for a city..."
+            placeholder={t('search.placeholder')}
             className="h-10 pl-3"
             autoComplete="off"
           />
@@ -54,7 +56,9 @@ export function CitySearch({ onSelect }: { onSelect: (city: CityResult) => void 
       >
         <Command shouldFilter={false}>
           <CommandList>
-            <CommandEmpty>{isFetching ? 'Searching…' : 'No cities found.'}</CommandEmpty>
+            <CommandEmpty>
+              {isFetching ? t('search.searching') : t('search.noResults')}
+            </CommandEmpty>
             <CommandGroup>
               {results.map((city) => (
                 <CommandItem key={city.id} onSelect={() => selectCity(city)} value={city.id}>

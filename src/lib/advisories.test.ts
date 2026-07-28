@@ -46,7 +46,7 @@ describe('computeAdvisories', () => {
     expect(advisories).toContainEqual({
       id: 'thunderstorm',
       severity: 'severe',
-      message: 'Thunderstorms in the area',
+      messageKey: 'weather.advisory.thunderstorm',
     })
   })
 

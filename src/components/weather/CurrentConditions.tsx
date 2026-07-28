@@ -1,4 +1,5 @@
 import { Droplet, Wind, Gauge, Eye } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useSettingsStore } from '@/store/settingsStore'
 import { WeatherIcon } from '@/components/weather/WeatherIcon'
 import { getWeatherCodeInfo } from '@/lib/weatherCode'
@@ -32,21 +33,25 @@ export function CurrentConditions({
   current: CurrentConditionsData
   locationName: string
 }) {
+  const { t } = useTranslation()
   const temperatureUnit = useSettingsStore((s) => s.temperatureUnit)
   const windUnit = useSettingsStore((s) => s.windUnit)
-  const { label } = getWeatherCodeInfo(current.weatherCode)
+  const { labelKey } = getWeatherCodeInfo(current.weatherCode)
 
   return (
-    <section aria-label="Current conditions" className="glass-card p-6">
+    <section aria-labelledby="current-location-name" className="glass-card p-6">
       <div className="flex flex-wrap items-start justify-between gap-6">
         <div>
-          <h1 className="font-display text-xl font-semibold">{locationName}</h1>
-          <p className="text-muted-foreground text-sm">{label}</p>
+          <h1 id="current-location-name" className="font-display text-xl font-semibold">
+            {locationName}
+          </h1>
+          <p className="text-muted-foreground text-sm">{t(labelKey)}</p>
           <p className="font-display mt-2 text-6xl font-semibold tabular-nums" aria-live="polite">
             {formatTemperature(current.temperatureC, temperatureUnit)}
           </p>
           <p className="text-muted-foreground text-sm">
-            Feels like {formatTemperature(current.apparentTemperatureC, temperatureUnit)}
+            {t('weather.feelsLike')}{' '}
+            {formatTemperature(current.apparentTemperatureC, temperatureUnit)}
           </p>
         </div>
         <WeatherIcon
@@ -59,22 +64,22 @@ export function CurrentConditions({
       <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
         <MetricPill
           icon={Droplet}
-          label="Humidity"
+          label={t('weather.humidity')}
           value={formatPercent(current.humidityPercent)}
         />
         <MetricPill
           icon={Wind}
-          label="Wind"
+          label={t('weather.wind')}
           value={`${formatWindSpeed(current.windSpeedKmh, windUnit)} ${degreesToCompass(current.windDirectionDeg)}`}
         />
         <MetricPill
           icon={Gauge}
-          label="Pressure"
+          label={t('weather.pressure')}
           value={`${Math.round(current.surfacePressureHpa)} hPa`}
         />
         <MetricPill
           icon={Eye}
-          label="Cloud cover"
+          label={t('weather.cloudCover')}
           value={formatPercent(current.cloudCoverPercent)}
         />
       </div>

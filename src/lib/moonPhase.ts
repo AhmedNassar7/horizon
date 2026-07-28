@@ -1,33 +1,24 @@
 const SYNODIC_MONTH_DAYS = 29.53058867
 const KNOWN_NEW_MOON_UTC = Date.UTC(2000, 0, 6, 18, 14, 0)
 
-export type MoonPhaseName =
-  | 'New Moon'
-  | 'Waxing Crescent'
-  | 'First Quarter'
-  | 'Waxing Gibbous'
-  | 'Full Moon'
-  | 'Waning Gibbous'
-  | 'Last Quarter'
-  | 'Waning Crescent'
-
 export interface MoonPhase {
   /** 0 = new moon, 0.5 = full moon, approaching 1 wraps back to new moon. */
   fraction: number
-  name: MoonPhaseName
+  /** i18next key (`weather.moon.*`), resolved by the component that renders it. */
+  nameKey: string
   emoji: string
 }
 
-const PHASES: { max: number; name: MoonPhaseName; emoji: string }[] = [
-  { max: 0.0625, name: 'New Moon', emoji: '🌑' },
-  { max: 0.1875, name: 'Waxing Crescent', emoji: '🌒' },
-  { max: 0.3125, name: 'First Quarter', emoji: '🌓' },
-  { max: 0.4375, name: 'Waxing Gibbous', emoji: '🌔' },
-  { max: 0.5625, name: 'Full Moon', emoji: '🌕' },
-  { max: 0.6875, name: 'Waning Gibbous', emoji: '🌖' },
-  { max: 0.8125, name: 'Last Quarter', emoji: '🌗' },
-  { max: 0.9375, name: 'Waning Crescent', emoji: '🌘' },
-  { max: 1, name: 'New Moon', emoji: '🌑' },
+const PHASES: { max: number; nameKey: string; emoji: string }[] = [
+  { max: 0.0625, nameKey: 'weather.moon.newMoon', emoji: '🌑' },
+  { max: 0.1875, nameKey: 'weather.moon.waxingCrescent', emoji: '🌒' },
+  { max: 0.3125, nameKey: 'weather.moon.firstQuarter', emoji: '🌓' },
+  { max: 0.4375, nameKey: 'weather.moon.waxingGibbous', emoji: '🌔' },
+  { max: 0.5625, nameKey: 'weather.moon.fullMoon', emoji: '🌕' },
+  { max: 0.6875, nameKey: 'weather.moon.waningGibbous', emoji: '🌖' },
+  { max: 0.8125, nameKey: 'weather.moon.lastQuarter', emoji: '🌗' },
+  { max: 0.9375, nameKey: 'weather.moon.waningCrescent', emoji: '🌘' },
+  { max: 1, nameKey: 'weather.moon.newMoon', emoji: '🌑' },
 ]
 
 /**
@@ -43,5 +34,9 @@ export function getMoonPhase(date: Date): MoonPhase {
     SYNODIC_MONTH_DAYS
 
   const match = PHASES.find((p) => fraction <= p.max)
-  return { fraction, name: match?.name ?? 'New Moon', emoji: match?.emoji ?? '🌑' }
+  return {
+    fraction,
+    nameKey: match?.nameKey ?? 'weather.moon.newMoon',
+    emoji: match?.emoji ?? '🌑',
+  }
 }

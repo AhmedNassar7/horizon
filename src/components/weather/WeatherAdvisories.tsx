@@ -1,4 +1,5 @@
 import { AlertTriangle } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import type { Advisory } from '@/lib/advisories'
 
@@ -9,6 +10,7 @@ const SEVERITY_STYLES: Record<Advisory['severity'], string> = {
 }
 
 export function WeatherAdvisories({ advisories }: { advisories: Advisory[] }) {
+  const { t } = useTranslation()
   if (advisories.length === 0) return null
 
   return (
@@ -24,7 +26,7 @@ export function WeatherAdvisories({ advisories }: { advisories: Advisory[] }) {
           )}
         >
           <AlertTriangle aria-hidden="true" className="size-4 shrink-0" />
-          {advisory.message}
+          {t(advisory.messageKey)}
         </li>
       ))}
     </ul>

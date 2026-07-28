@@ -1,0 +1,225 @@
+{
+  "app": {
+    "name": "Horizon",
+    "tagline": "Clima y hora, en todas partes."
+  },
+  "nav": {
+    "home": "Inicio",
+    "clocks": "Relojes",
+    "planner": "Planificador",
+    "timers": "Temporizadores",
+    "settings": "Ajustes",
+    "about": "Acerca de",
+    "compare": "Comparar"
+  },
+  "search": {
+    "placeholder": "Busca una ciudad...",
+    "noResults": "No se encontraron ciudades.",
+    "searching": "Buscando…"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "auto": "Sistema"
+  },
+  "footer": {
+    "dataSource": "Datos meteorológicos de Open-Meteo",
+    "sourceCode": "Código fuente"
+  },
+  "notFound": {
+    "title": "Horizonte perdido",
+    "body": "No pudimos encontrar esa página.",
+    "backHome": "Volver al inicio"
+  },
+  "home": {
+    "findingLocation": "Buscando tu ubicación…",
+    "getStarted": "Encontremos tu clima",
+    "getStartedBody": "Busca una ciudad para empezar, o permite el acceso a tu ubicación."
+  },
+  "weather": {
+    "feelsLike": "Sensación térmica",
+    "humidity": "Humedad",
+    "wind": "Viento",
+    "pressure": "Presión",
+    "cloudCover": "Nubosidad",
+    "next24Hours": "Próximas 24 horas",
+    "temperature": "Temperatura",
+    "sevenDayForecast": "Pronóstico de 7 días",
+    "today": "Hoy",
+    "loading": "Cargando el clima…",
+    "errorTitle": "No se pudo cargar el clima",
+    "errorBody": "Revisa tu conexión e inténtalo de nuevo — Horizon seguirá mostrando los últimos datos disponibles.",
+    "retry": "Reintentar",
+    "sunrise": "Amanecer",
+    "sunset": "Atardecer",
+    "moonPhase": "Fase lunar",
+    "airQuality": "Calidad del aire",
+    "usAqi": "AQI de EE. UU.",
+    "europeanAqi": "AQI europeo",
+    "code": {
+      "0": "Cielo despejado",
+      "1": "Mayormente despejado",
+      "2": "Parcialmente nublado",
+      "3": "Nublado",
+      "45": "Niebla",
+      "48": "Niebla con escarcha",
+      "51": "Llovizna ligera",
+      "53": "Llovizna moderada",
+      "55": "Llovizna densa",
+      "56": "Llovizna helada ligera",
+      "57": "Llovizna helada densa",
+      "61": "Lluvia ligera",
+      "63": "Lluvia moderada",
+      "65": "Lluvia intensa",
+      "66": "Lluvia helada ligera",
+      "67": "Lluvia helada intensa",
+      "71": "Nevada ligera",
+      "73": "Nevada moderada",
+      "75": "Nevada intensa",
+      "77": "Gránulos de nieve",
+      "80": "Chubascos ligeros",
+      "81": "Chubascos moderados",
+      "82": "Chubascos violentos",
+      "85": "Chubascos de nieve ligeros",
+      "86": "Chubascos de nieve intensos",
+      "95": "Tormenta eléctrica",
+      "96": "Tormenta con granizo ligero",
+      "99": "Tormenta con granizo intenso",
+      "unknown": "Desconocido"
+    },
+    "advisory": {
+      "thunderstorm": "Tormentas eléctricas en la zona",
+      "severePrecip": "Se esperan precipitaciones intensas",
+      "windSevere": "Se esperan ráfagas de viento fuertes",
+      "windModerate": "Condiciones ventosas con ráfagas",
+      "uv": "Índice UV muy alto — limita la exposición al sol",
+      "precipProbability": "Alta probabilidad de lluvia hoy"
+    },
+    "aqiLevel": {
+      "unknown": {
+        "label": "Desconocido",
+        "advice": "No hay datos de calidad del aire disponibles."
+      },
+      "good": { "label": "Buena", "advice": "La calidad del aire es satisfactoria para todos." },
+      "moderate": {
+        "label": "Moderada",
+        "advice": "Las personas inusualmente sensibles deberían limitar el esfuerzo prolongado al aire libre."
+      },
+      "sensitive": {
+        "label": "Insalubre para grupos sensibles",
+        "advice": "Personas con afecciones respiratorias o cardíacas, niños y adultos mayores deberían reducir el esfuerzo prolongado al aire libre."
+      },
+      "unhealthy": {
+        "label": "Insalubre",
+        "advice": "Todos deberían reducir el esfuerzo prolongado al aire libre."
+      },
+      "veryUnhealthy": {
+        "label": "Muy insalubre",
+        "advice": "Todos deberían evitar el esfuerzo prolongado al aire libre."
+      },
+      "hazardous": {
+        "label": "Peligrosa",
+        "advice": "Todos deberían evitar cualquier esfuerzo al aire libre."
+      }
+    },
+    "moon": {
+      "newMoon": "Luna nueva",
+      "waxingCrescent": "Creciente iluminante",
+      "firstQuarter": "Cuarto creciente",
+      "waxingGibbous": "Gibosa creciente",
+      "fullMoon": "Luna llena",
+      "waningGibbous": "Gibosa menguante",
+      "lastQuarter": "Cuarto menguante",
+      "waningCrescent": "Creciente menguante"
+    }
+  },
+  "compare": {
+    "title": "Comparar ubicaciones",
+    "empty": "Aún no hay ubicaciones guardadas",
+    "emptyBody": "Busca una ciudad para empezar a comparar.",
+    "loadError": "No se pudo cargar el clima."
+  },
+  "location": {
+    "notFound": "Ubicación no encontrada",
+    "notFoundBody": "Puede que se haya eliminado de tus ubicaciones guardadas."
+  },
+  "clocks": {
+    "title": "Relojes mundiales",
+    "subtitle": "Hora local en vivo de cada lugar que sigues.",
+    "empty": "Aún no hay ubicaciones guardadas — busca una ciudad arriba para añadir una.",
+    "removeAria": "Quitar {{name}} de los relojes mundiales",
+    "tomorrow": "Mañana",
+    "yesterday": "Ayer",
+    "srCurrentTime": "Hora actual {{time}}"
+  },
+  "timeDifference": {
+    "title": "Diferencia horaria",
+    "subtitle": "Busca cualquier ciudad para ver cuánto tiempo te lleva de ventaja o retraso ahora mismo.",
+    "sameTime": "Misma hora que tú",
+    "hourAhead_one": "{{count}} hora por delante de ti",
+    "hourAhead_other": "{{count}} horas por delante de ti",
+    "hourBehind_one": "{{count}} hora por detrás de ti",
+    "hourBehind_other": "{{count}} horas por detrás de ti",
+    "removeAria": "Quitar {{name}}"
+  },
+  "planner": {
+    "title": "Planificador de reuniones",
+    "subtitle": "Cada columna es una hora de tu día. El verde indica horario laboral (9am–5pm) en ese lugar; la columna resaltada es un buen momento para todos.",
+    "needTwo": "Añade al menos dos ubicaciones para planificar una reunión",
+    "saveLocations": "Guarda algunas ubicaciones",
+    "needTwoBody": "para ver cuándo todos están despiertos y trabajando.",
+    "location": "Ubicación"
+  },
+  "timers": {
+    "title": "Temporizadores",
+    "label": "Etiqueta",
+    "minutes": "Minutos",
+    "seconds": "Segundos",
+    "addTimer": "Añadir temporizador",
+    "labelPlaceholder": "Pasta",
+    "defaultLabel": "Temporizador",
+    "timesUp": "¡Se acabó el tiempo!",
+    "start": "Iniciar",
+    "resume": "Reanudar",
+    "pause": "Pausar",
+    "reset": "Reiniciar",
+    "lap": "Vuelta",
+    "lapNumber": "Vuelta {{number}}",
+    "removeAria": "Quitar el temporizador {{label}}",
+    "stopwatch": "Cronómetro"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "theme": "Tema",
+    "themeBody": "Claro, oscuro o según el sistema.",
+    "temperature": "Temperatura",
+    "temperatureBody": "Celsius o Fahrenheit.",
+    "clockFormat": "Formato de hora",
+    "clockFormatBody": "Formato de 24 u horas o de 12 horas.",
+    "windSpeed": "Velocidad del viento",
+    "windSpeedBody": "Unidad usada para las lecturas de viento.",
+    "language": "Idioma",
+    "languageBody": "Idioma utilizado en toda la aplicación."
+  },
+  "about": {
+    "title": "Acerca de Horizon",
+    "intro": "Horizon es una aplicación gratuita de clima y hora mundial que funciona solo en el navegador. Todo se ejecuta en tu navegador — no hay servidor, ni cuenta, ni seguimiento.",
+    "dataSources": "Fuentes de datos",
+    "privacy": "Privacidad",
+    "privacyBody": "Sin cuentas, sin cookies, sin rastreadores de análisis. Tus ubicaciones guardadas y preferencias se almacenan solo en el almacenamiento local de tu navegador.",
+    "sources": {
+      "openMeteo": {
+        "name": "Open-Meteo",
+        "use": "Condiciones actuales, pronóstico por hora/día, calidad del aire, avisos meteorológicos"
+      },
+      "openMeteoGeocoding": {
+        "name": "Geocodificación de Open-Meteo",
+        "use": "Búsqueda de ciudades y coordenadas"
+      },
+      "bigDataCloud": {
+        "name": "BigDataCloud",
+        "use": "Geocodificación inversa y localización de respaldo por IP"
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { Pause, Play, RotateCcw, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useCountdown } from '@/hooks/useCountdown'
 import { formatDuration } from '@/lib/duration'
 import { Button } from '@/components/ui/button'
@@ -13,6 +14,7 @@ export function CountdownTimerCard({
   durationMs: number
   onRemove: () => void
 }) {
+  const { t } = useTranslation()
   const { remainingMs, isRunning, isFinished, start, pause, reset } = useCountdown(durationMs)
 
   return (
@@ -28,7 +30,7 @@ export function CountdownTimerCard({
         size="icon-sm"
         className="absolute top-2 right-2"
         onClick={onRemove}
-        aria-label={`Remove ${label} timer`}
+        aria-label={t('timers.removeAria', { label })}
       >
         <X aria-hidden="true" className="size-4" />
       </Button>
@@ -40,21 +42,21 @@ export function CountdownTimerCard({
           isFinished && 'text-danger',
         )}
       >
-        {isFinished ? "Time's up!" : formatDuration(remainingMs, { showTenths: false })}
+        {isFinished ? t('timers.timesUp') : formatDuration(remainingMs, { showTenths: false })}
       </p>
 
       <div className="mt-2 flex gap-2">
         {isRunning ? (
           <Button onClick={pause} variant="secondary" size="sm">
-            <Pause aria-hidden="true" /> Pause
+            <Pause aria-hidden="true" /> {t('timers.pause')}
           </Button>
         ) : (
           <Button onClick={start} size="sm" disabled={isFinished}>
-            <Play aria-hidden="true" /> Start
+            <Play aria-hidden="true" /> {t('timers.start')}
           </Button>
         )}
         <Button onClick={reset} variant="ghost" size="sm">
-          <RotateCcw aria-hidden="true" /> Reset
+          <RotateCcw aria-hidden="true" /> {t('timers.reset')}
         </Button>
       </div>
     </div>

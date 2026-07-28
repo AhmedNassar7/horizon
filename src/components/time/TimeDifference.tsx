@@ -1,4 +1,5 @@
 import { X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useTimezoneStore } from '@/store/timezoneStore'
 import { useSettingsStore } from '@/store/settingsStore'
 import { formatTimeInZone, getRelativeOffsetHours, resolveTimezone } from '@/lib/timezone'
@@ -6,15 +7,20 @@ import { CitySearch } from '@/components/search/CitySearch'
 import { Button } from '@/components/ui/button'
 import type { CityResult } from '@/schemas/geocoding'
 
-function relativeLabel(hours: number): string {
-  if (hours === 0) return 'Same time as you'
+function relativeLabel(
+  hours: number,
+  t: (key: string, opts?: Record<string, unknown>) => string,
+): string {
+  if (hours === 0) return t('timeDifference.sameTime')
   const rounded = Math.round(hours * 2) / 2
   const magnitude = Math.abs(rounded)
-  const unit = magnitude === 1 ? 'hour' : 'hours'
-  return rounded > 0 ? `${magnitude} ${unit} ahead of you` : `${magnitude} ${unit} behind you`
+  return rounded > 0
+    ? t('timeDifference.hourAhead', { count: magnitude })
+    : t('timeDifference.hourBehind', { count: magnitude })
 }
 
 export function TimeDifference() {
+  const { t } = useTranslation()
   const { selections, addSelection, removeSelection } = useTimezoneStore()
   const timeFormat = useSettingsStore((s) => s.timeFormat)
   const now = new Date()
@@ -28,11 +34,9 @@ export function TimeDifference() {
   }
 
   return (
-    <section aria-label="Time difference calculator" className="glass-card p-6">
-      <h2 className="font-display text-lg font-semibold">Time difference</h2>
-      <p className="text-muted-foreground text-sm">
-        Search any city to see how far ahead or behind it is from you right now.
-      </p>
+    <section aria-label={t('timeDifference.title')} className="glass-card p-6">
+      <h2 className="font-display text-lg font-semibold">{t('timeDifference.title')}</h2>
+      <p className="text-muted-foreground text-sm">{t('timeDifference.subtitle')}</p>
       <div className="mt-4">
         <CitySearch onSelect={handleSelect} />
       </div>
@@ -53,14 +57,14 @@ export function TimeDifference() {
                     hour12: timeFormat === '12h',
                   })}
                   {' · '}
-                  {relativeLabel(getRelativeOffsetHours(selection.timezone, now))}
+                  {relativeLabel(getRelativeOffsetHours(selection.timezone, now), t)}
                 </p>
               </div>
               <Button
                 variant="ghost"
                 size="icon-sm"
                 onClick={() => removeSelection(selection.id)}
-                aria-label={`Remove ${selection.label}`}
+                aria-label={t('timeDifference.removeAria', { name: selection.label })}
               >
                 <X aria-hidden="true" className="size-4" />
               </Button>

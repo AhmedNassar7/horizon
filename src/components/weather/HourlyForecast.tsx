@@ -1,4 +1,5 @@
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { useTranslation } from 'react-i18next'
 import { useSettingsStore } from '@/store/settingsStore'
 import { WeatherIcon } from '@/components/weather/WeatherIcon'
 import { celsiusTo, formatTemperature } from '@/lib/units'
@@ -12,6 +13,7 @@ export function HourlyForecast({
   hours: HourlyForecastPoint[]
   timezone: string
 }) {
+  const { t } = useTranslation()
   const temperatureUnit = useSettingsStore((s) => s.temperatureUnit)
   const timeFormat = useSettingsStore((s) => s.timeFormat)
   const hour12 = timeFormat === '12h'
@@ -23,8 +25,8 @@ export function HourlyForecast({
   }))
 
   return (
-    <section aria-label="Hourly forecast" className="glass-card p-6">
-      <h2 className="font-display text-lg font-semibold">Next 24 hours</h2>
+    <section aria-label={t('weather.next24Hours')} className="glass-card p-6">
+      <h2 className="font-display text-lg font-semibold">{t('weather.next24Hours')}</h2>
 
       <div className="mt-4 h-32 w-full">
         <ResponsiveContainer width="100%" height="100%">
@@ -38,7 +40,7 @@ export function HourlyForecast({
             <XAxis dataKey="time" hide />
             <YAxis hide domain={['dataMin - 2', 'dataMax + 2']} />
             <Tooltip
-              formatter={(value) => [`${Math.round(Number(value))}°`, 'Temperature']}
+              formatter={(value) => [`${Math.round(Number(value))}°`, t('weather.temperature')]}
               contentStyle={{
                 background: 'var(--color-card)',
                 border: '1px solid var(--color-border)',

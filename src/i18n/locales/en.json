@@ -9,10 +9,13 @@
     "planner": "Planner",
     "timers": "Timers",
     "settings": "Settings",
-    "about": "About"
+    "about": "About",
+    "compare": "Compare"
   },
   "search": {
-    "placeholder": "Search for a city..."
+    "placeholder": "Search for a city...",
+    "noResults": "No cities found.",
+    "searching": "Searching…"
   },
   "theme": {
     "light": "Light",
@@ -27,5 +30,190 @@
     "title": "Lost the horizon",
     "body": "We couldn't find that page.",
     "backHome": "Back home"
+  },
+  "home": {
+    "findingLocation": "Finding your location…",
+    "getStarted": "Let's find your weather",
+    "getStartedBody": "Search for a city to get started, or allow location access."
+  },
+  "weather": {
+    "feelsLike": "Feels like",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "pressure": "Pressure",
+    "cloudCover": "Cloud cover",
+    "next24Hours": "Next 24 hours",
+    "temperature": "Temperature",
+    "sevenDayForecast": "7-day forecast",
+    "today": "Today",
+    "loading": "Loading weather…",
+    "errorTitle": "Couldn't load the weather",
+    "errorBody": "Check your connection and try again — Horizon will keep showing the last data it had.",
+    "retry": "Try again",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "moonPhase": "Moon phase",
+    "airQuality": "Air quality",
+    "usAqi": "US AQI",
+    "europeanAqi": "European AQI",
+    "code": {
+      "0": "Clear sky",
+      "1": "Mainly clear",
+      "2": "Partly cloudy",
+      "3": "Overcast",
+      "45": "Fog",
+      "48": "Depositing rime fog",
+      "51": "Light drizzle",
+      "53": "Moderate drizzle",
+      "55": "Dense drizzle",
+      "56": "Light freezing drizzle",
+      "57": "Dense freezing drizzle",
+      "61": "Slight rain",
+      "63": "Moderate rain",
+      "65": "Heavy rain",
+      "66": "Light freezing rain",
+      "67": "Heavy freezing rain",
+      "71": "Slight snow fall",
+      "73": "Moderate snow fall",
+      "75": "Heavy snow fall",
+      "77": "Snow grains",
+      "80": "Slight rain showers",
+      "81": "Moderate rain showers",
+      "82": "Violent rain showers",
+      "85": "Slight snow showers",
+      "86": "Heavy snow showers",
+      "95": "Thunderstorm",
+      "96": "Thunderstorm with slight hail",
+      "99": "Thunderstorm with heavy hail",
+      "unknown": "Unknown"
+    },
+    "advisory": {
+      "thunderstorm": "Thunderstorms in the area",
+      "severePrecip": "Heavy precipitation expected",
+      "windSevere": "Strong wind gusts expected",
+      "windModerate": "Breezy conditions with gusty wind",
+      "uv": "Very high UV — limit sun exposure",
+      "precipProbability": "High chance of rain today"
+    },
+    "aqiLevel": {
+      "unknown": { "label": "Unknown", "advice": "No air quality data available." },
+      "good": { "label": "Good", "advice": "Air quality is satisfactory for everyone." },
+      "moderate": {
+        "label": "Moderate",
+        "advice": "Unusually sensitive people should consider limiting prolonged outdoor exertion."
+      },
+      "sensitive": {
+        "label": "Unhealthy for sensitive groups",
+        "advice": "People with respiratory or heart conditions, children, and older adults should reduce prolonged outdoor exertion."
+      },
+      "unhealthy": {
+        "label": "Unhealthy",
+        "advice": "Everyone should reduce prolonged outdoor exertion."
+      },
+      "veryUnhealthy": {
+        "label": "Very unhealthy",
+        "advice": "Everyone should avoid prolonged outdoor exertion."
+      },
+      "hazardous": { "label": "Hazardous", "advice": "Everyone should avoid all outdoor exertion." }
+    },
+    "moon": {
+      "newMoon": "New Moon",
+      "waxingCrescent": "Waxing Crescent",
+      "firstQuarter": "First Quarter",
+      "waxingGibbous": "Waxing Gibbous",
+      "fullMoon": "Full Moon",
+      "waningGibbous": "Waning Gibbous",
+      "lastQuarter": "Last Quarter",
+      "waningCrescent": "Waning Crescent"
+    }
+  },
+  "compare": {
+    "title": "Compare locations",
+    "empty": "No saved locations yet",
+    "emptyBody": "Search for a city to start comparing.",
+    "loadError": "Couldn't load weather."
+  },
+  "location": {
+    "notFound": "Location not found",
+    "notFoundBody": "It may have been removed from your saved locations."
+  },
+  "clocks": {
+    "title": "World clocks",
+    "subtitle": "Live local time for every place you're tracking.",
+    "empty": "No saved locations yet — search for a city above to add one.",
+    "removeAria": "Remove {{name}} from world clocks",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday",
+    "srCurrentTime": "Current time {{time}}"
+  },
+  "timeDifference": {
+    "title": "Time difference",
+    "subtitle": "Search any city to see how far ahead or behind it is from you right now.",
+    "sameTime": "Same time as you",
+    "hourAhead_one": "{{count}} hour ahead of you",
+    "hourAhead_other": "{{count}} hours ahead of you",
+    "hourBehind_one": "{{count}} hour behind you",
+    "hourBehind_other": "{{count}} hours behind you",
+    "removeAria": "Remove {{name}}"
+  },
+  "planner": {
+    "title": "Meeting planner",
+    "subtitle": "Each column is an hour of your day. Green means business hours (9am–5pm) at that location; the highlighted column is a good time for everyone.",
+    "needTwo": "Add at least two locations to plan a meeting",
+    "saveLocations": "Save some locations",
+    "needTwoBody": "to see when everyone's awake and working.",
+    "location": "Location"
+  },
+  "timers": {
+    "title": "Timers",
+    "label": "Label",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "addTimer": "Add timer",
+    "labelPlaceholder": "Pasta",
+    "defaultLabel": "Timer",
+    "timesUp": "Time's up!",
+    "start": "Start",
+    "resume": "Resume",
+    "pause": "Pause",
+    "reset": "Reset",
+    "lap": "Lap",
+    "lapNumber": "Lap {{number}}",
+    "removeAria": "Remove {{label}} timer",
+    "stopwatch": "Stopwatch"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "themeBody": "Light, dark, or match your system.",
+    "temperature": "Temperature",
+    "temperatureBody": "Celsius or Fahrenheit.",
+    "clockFormat": "Clock format",
+    "clockFormatBody": "24-hour or 12-hour time.",
+    "windSpeed": "Wind speed",
+    "windSpeedBody": "Unit used for wind readings.",
+    "language": "Language",
+    "languageBody": "Language used throughout the app."
+  },
+  "about": {
+    "title": "About Horizon",
+    "intro": "Horizon is a free, client-only weather and world-time app. Everything runs in your browser — there is no backend, no account, and nothing is tracked.",
+    "dataSources": "Data sources",
+    "privacy": "Privacy",
+    "privacyBody": "No accounts, no cookies, no analytics trackers. Your saved locations and preferences are stored only in your browser's local storage.",
+    "sources": {
+      "openMeteo": {
+        "name": "Open-Meteo",
+        "use": "Current conditions, hourly/daily forecast, air quality, weather advisories"
+      },
+      "openMeteoGeocoding": {
+        "name": "Open-Meteo Geocoding",
+        "use": "City search and coordinates"
+      },
+      "bigDataCloud": {
+        "name": "BigDataCloud",
+        "use": "Reverse geocoding and IP-based location fallback"
+      }
+    }
   }
 }

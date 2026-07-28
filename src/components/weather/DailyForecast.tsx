@@ -1,26 +1,30 @@
+import { useTranslation } from 'react-i18next'
 import { useSettingsStore } from '@/store/settingsStore'
 import { WeatherIcon } from '@/components/weather/WeatherIcon'
 import { formatPercent, formatTemperature } from '@/lib/units'
 import type { DailyForecastPoint } from '@/schemas/weather'
 
-function weekdayLabel(date: string, index: number) {
-  if (index === 0) return 'Today'
-  return new Intl.DateTimeFormat('en', { weekday: 'short', timeZone: 'UTC' }).format(new Date(date))
+function weekdayLabel(date: string, index: number, todayLabel: string, locale: string) {
+  if (index === 0) return todayLabel
+  return new Intl.DateTimeFormat(locale, { weekday: 'short', timeZone: 'UTC' }).format(
+    new Date(date),
+  )
 }
 
 export function DailyForecast({ days }: { days: DailyForecastPoint[] }) {
+  const { t, i18n } = useTranslation()
   const temperatureUnit = useSettingsStore((s) => s.temperatureUnit)
 
   const allTemps = days
-    .flatMap((d) => [d.tempMinC, d.tempMaxC])
-    .filter((t): t is number => t != null)
+    .flatMap((day) => [day.tempMinC, day.tempMaxC])
+    .filter((value): value is number => value != null)
   const rangeMin = Math.min(...allTemps)
   const rangeMax = Math.max(...allTemps)
   const span = Math.max(rangeMax - rangeMin, 1)
 
   return (
-    <section aria-label="Daily forecast" className="glass-card p-6">
-      <h2 className="font-display text-lg font-semibold">7-day forecast</h2>
+    <section aria-label={t('weather.sevenDayForecast')} className="glass-card p-6">
+      <h2 className="font-display text-lg font-semibold">{t('weather.sevenDayForecast')}</h2>
       <ul className="mt-4 flex flex-col gap-3">
         {days.map((day, index) => {
           const lowOffset = day.tempMinC == null ? 0 : ((day.tempMinC - rangeMin) / span) * 100
@@ -31,7 +35,9 @@ export function DailyForecast({ days }: { days: DailyForecastPoint[] }) {
               key={day.date}
               className="grid grid-cols-[3.5rem_1.5rem_1fr_auto] items-center gap-3"
             >
-              <span className="text-sm font-medium">{weekdayLabel(day.date, index)}</span>
+              <span className="text-sm font-medium">
+                {weekdayLabel(day.date, index, t('weather.today'), i18n.language)}
+              </span>
               <WeatherIcon code={day.weatherCode} isDay className="text-primary size-5" />
               <div className="flex items-center gap-2">
                 <span className="text-muted-foreground w-10 text-right text-sm tabular-nums">

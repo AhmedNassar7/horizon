@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { LocationDashboard } from '@/components/weather/LocationDashboard'
@@ -9,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import type { CityResult } from '@/schemas/geocoding'
 
 export default function Home() {
+  const { t } = useTranslation()
   const locations = useLocationStore((s) => s.locations)
   const activeLocationId = useLocationStore((s) => s.activeLocationId)
   const addLocation = useLocationStore((s) => s.addLocation)
@@ -42,26 +45,33 @@ export default function Home() {
     })
   }
 
-  if (!activeLocation) {
-    return (
-      <div className="mx-auto w-full max-w-2xl px-4 py-16">
-        <LocationEmptyState onSelectCity={handleSelectCity} isLocating={geolocation.isFetching} />
-      </div>
-    )
-  }
-
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <CitySearch onSelect={handleSelectCity} />
-        {locations.length > 1 && (
-          <Button asChild variant="outline" size="sm">
-            <Link to="/compare">Compare</Link>
-          </Button>
-        )}
-      </div>
+    <>
+      <Helmet>
+        <title>
+          {t('app.name')} — {t('app.tagline')}
+        </title>
+        <meta name="description" content={t('app.tagline')} />
+      </Helmet>
 
-      <LocationDashboard location={activeLocation} />
-    </div>
+      {!activeLocation ? (
+        <div className="mx-auto w-full max-w-2xl px-4 py-16">
+          <LocationEmptyState onSelectCity={handleSelectCity} isLocating={geolocation.isFetching} />
+        </div>
+      ) : (
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <CitySearch onSelect={handleSelectCity} />
+            {locations.length > 1 && (
+              <Button asChild variant="outline" size="sm">
+                <Link to="/compare">{t('nav.compare')}</Link>
+              </Button>
+            )}
+          </div>
+
+          <LocationDashboard location={activeLocation} />
+        </div>
+      )}
+    </>
   )
 }

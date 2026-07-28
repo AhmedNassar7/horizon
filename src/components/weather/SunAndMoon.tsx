@@ -1,20 +1,25 @@
 import { Sunrise, Sunset } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useSettingsStore } from '@/store/settingsStore'
 import { formatTimeInZone } from '@/lib/timezone'
 import { getMoonPhase } from '@/lib/moonPhase'
 import type { DailyForecastPoint } from '@/schemas/weather'
 
 export function SunAndMoon({ today, timezone }: { today: DailyForecastPoint; timezone: string }) {
+  const { t } = useTranslation()
   const timeFormat = useSettingsStore((s) => s.timeFormat)
   const hour12 = timeFormat === '12h'
   const moon = getMoonPhase(new Date())
 
   return (
-    <section aria-label="Sun and moon" className="glass-card flex flex-wrap gap-6 p-6">
+    <section
+      aria-label={`${t('weather.sunrise')}, ${t('weather.sunset')}, ${t('weather.moonPhase')}`}
+      className="glass-card flex flex-wrap gap-6 p-6"
+    >
       <div className="flex items-center gap-3">
         <Sunrise aria-hidden="true" className="size-6 text-amber-500" />
         <div>
-          <p className="text-muted-foreground text-xs">Sunrise</p>
+          <p className="text-muted-foreground text-xs">{t('weather.sunrise')}</p>
           <p className="font-medium tabular-nums">
             {formatTimeInZone(new Date(today.sunrise), timezone, {
               hour: 'numeric',
@@ -27,7 +32,7 @@ export function SunAndMoon({ today, timezone }: { today: DailyForecastPoint; tim
       <div className="flex items-center gap-3">
         <Sunset aria-hidden="true" className="size-6 text-amber-600" />
         <div>
-          <p className="text-muted-foreground text-xs">Sunset</p>
+          <p className="text-muted-foreground text-xs">{t('weather.sunset')}</p>
           <p className="font-medium tabular-nums">
             {formatTimeInZone(new Date(today.sunset), timezone, {
               hour: 'numeric',
@@ -42,8 +47,8 @@ export function SunAndMoon({ today, timezone }: { today: DailyForecastPoint; tim
           {moon.emoji}
         </span>
         <div>
-          <p className="text-muted-foreground text-xs">Moon phase</p>
-          <p className="font-medium">{moon.name}</p>
+          <p className="text-muted-foreground text-xs">{t('weather.moonPhase')}</p>
+          <p className="font-medium">{t(moon.nameKey)}</p>
         </div>
       </div>
     </section>
