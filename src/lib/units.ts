@@ -37,6 +37,24 @@ export function formatPercent(value: number | null, locale = 'en'): string {
   )
 }
 
+const M_TO_KM = 1 / 1000
+const M_TO_MI = 1 / 1609.344
+
+/**
+ * There's no dedicated distance-unit setting in the store, so visibility
+ * follows the same metric/imperial split as `windUnit`: miles when the
+ * user picked mph (an imperial wind unit), km otherwise (including knots,
+ * which pairs with metric distances in most weather UIs).
+ */
+export function formatVisibility(meters: number | null, windUnit: WindUnit, locale = 'en'): string {
+  if (meters == null) return '—'
+  const useMiles = windUnit === 'mph'
+  const value = useMiles ? meters * M_TO_MI : meters * M_TO_KM
+  const label = useMiles ? 'mi' : 'km'
+  const maximumFractionDigits = value < 10 ? 1 : 0
+  return `${value.toLocaleString(locale, { maximumFractionDigits })} ${label}`
+}
+
 const COMPASS_DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
 
 export function degreesToCompass(deg: number): string {

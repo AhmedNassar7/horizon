@@ -18,6 +18,9 @@ const CURRENT_FIELDS = [
   'cloud_cover',
   'is_day',
   'precipitation',
+  'visibility',
+  'uv_index',
+  'dew_point_2m',
 ].join(',')
 
 const HOURLY_FIELDS = [
@@ -25,6 +28,7 @@ const HOURLY_FIELDS = [
   'precipitation_probability',
   'weather_code',
   'is_day',
+  'wind_speed_10m',
 ].join(',')
 
 const DAILY_FIELDS = [
@@ -70,6 +74,9 @@ async function getWeather(latitude: number, longitude: number): Promise<WeatherD
       cloudCoverPercent: raw.current.cloud_cover,
       isDay: raw.current.is_day === 1,
       precipitationMm: raw.current.precipitation,
+      visibilityMeters: raw.current.visibility,
+      uvIndex: raw.current.uv_index,
+      dewPointC: raw.current.dew_point_2m,
     },
     hourly: raw.hourly.time.map((time, i) => ({
       time,
@@ -77,6 +84,7 @@ async function getWeather(latitude: number, longitude: number): Promise<WeatherD
       precipitationProbabilityPercent: raw.hourly.precipitation_probability[i] ?? null,
       weatherCode: raw.hourly.weather_code[i] ?? null,
       isDay: raw.hourly.is_day[i] === 1,
+      windSpeedKmh: raw.hourly.wind_speed_10m[i] ?? null,
     })),
     daily: raw.daily.time.map((date, i) => ({
       date,

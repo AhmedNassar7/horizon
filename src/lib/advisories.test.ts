@@ -16,6 +16,9 @@ function makeCurrent(overrides: Partial<CurrentConditions> = {}): CurrentConditi
     cloudCoverPercent: 10,
     isDay: true,
     precipitationMm: 0,
+    visibilityMeters: 24000,
+    uvIndex: 3,
+    dewPointC: 12,
     ...overrides,
   }
 }

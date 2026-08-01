@@ -20,6 +20,9 @@ export const openMeteoForecastSchema = z.object({
     cloud_cover: z.number(),
     is_day: z.union([z.literal(0), z.literal(1)]),
     precipitation: z.number(),
+    visibility: z.number(),
+    uv_index: z.number(),
+    dew_point_2m: z.number(),
   }),
   hourly: z.object({
     time: z.array(z.string()),
@@ -27,6 +30,7 @@ export const openMeteoForecastSchema = z.object({
     precipitation_probability: arrayField,
     weather_code: arrayField,
     is_day: arrayField,
+    wind_speed_10m: arrayField,
   }),
   daily: z.object({
     time: z.array(z.string()),
@@ -61,6 +65,9 @@ export interface CurrentConditions {
   cloudCoverPercent: number
   isDay: boolean
   precipitationMm: number
+  visibilityMeters: number
+  uvIndex: number
+  dewPointC: number
 }
 
 export interface HourlyForecastPoint {
@@ -69,6 +76,7 @@ export interface HourlyForecastPoint {
   precipitationProbabilityPercent: number | null
   weatherCode: number | null
   isDay: boolean
+  windSpeedKmh: number | null
 }
 
 export interface DailyForecastPoint {

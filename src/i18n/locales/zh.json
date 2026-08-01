@@ -60,6 +60,15 @@
     "airQuality": "空气质量",
     "usAqi": "美国AQI",
     "europeanAqi": "欧洲AQI",
+    "dewPoint": "露点",
+    "windGust": "阵风",
+    "beaufortForce": "{{force}} 级",
+    "visibility": "能见度",
+    "uvIndex": "紫外线指数",
+    "daylight": "日照时长",
+    "hourlyMetric": "每小时图表指标",
+    "precipitationChance": "降水概率",
+    "windSpeed": "风速",
     "code": {
       "0": "晴朗",
       "1": "大部晴朗",
@@ -123,6 +132,36 @@
       "waningGibbous": "亏凸月",
       "lastQuarter": "下弦月",
       "waningCrescent": "残月"
+    },
+    "visibilityLevel": {
+      "excellent": "极佳",
+      "good": "良好",
+      "moderate": "中等",
+      "poor": "差",
+      "unknown": "未知"
+    },
+    "uvLevel": {
+      "low": "低",
+      "moderate": "中等",
+      "high": "高",
+      "veryHigh": "很高",
+      "extreme": "极高",
+      "unknown": "未知"
+    },
+    "beaufort": {
+      "0": "无风",
+      "1": "软风",
+      "2": "轻风",
+      "3": "微风",
+      "4": "和风",
+      "5": "清风",
+      "6": "强风",
+      "7": "疾风",
+      "8": "大风",
+      "9": "烈风",
+      "10": "狂风",
+      "11": "暴风",
+      "12": "飓风"
     }
   },
   "compare": {

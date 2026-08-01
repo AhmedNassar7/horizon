@@ -20,6 +20,9 @@ export const handlers = [
         cloud_cover: 40,
         is_day: 1,
         precipitation: 0,
+        visibility: 24140,
+        uv_index: 4.2,
+        dew_point_2m: 12.8,
       },
       hourly: {
         time: ['2026-07-28T12:00', '2026-07-28T13:00'],
@@ -27,6 +30,7 @@ export const handlers = [
         precipitation_probability: [5, 10],
         weather_code: [2, 2],
         is_day: [1, 1],
+        wind_speed_10m: [14.2, 15.8],
       },
       daily: {
         time: ['2026-07-28', '2026-07-29'],

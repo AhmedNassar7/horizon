@@ -60,6 +60,15 @@
     "airQuality": "Air quality",
     "usAqi": "US AQI",
     "europeanAqi": "European AQI",
+    "dewPoint": "Dew point",
+    "windGust": "Gusts",
+    "beaufortForce": "Force {{force}}",
+    "visibility": "Visibility",
+    "uvIndex": "UV Index",
+    "daylight": "Daylight",
+    "hourlyMetric": "Hourly chart metric",
+    "precipitationChance": "Chance of rain",
+    "windSpeed": "Wind speed",
     "code": {
       "0": "Clear sky",
       "1": "Mainly clear",
@@ -129,6 +138,36 @@
       "waningGibbous": "Waning Gibbous",
       "lastQuarter": "Last Quarter",
       "waningCrescent": "Waning Crescent"
+    },
+    "visibilityLevel": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "moderate": "Moderate",
+      "poor": "Poor",
+      "unknown": "Unknown"
+    },
+    "uvLevel": {
+      "low": "Low",
+      "moderate": "Moderate",
+      "high": "High",
+      "veryHigh": "Very High",
+      "extreme": "Extreme",
+      "unknown": "Unknown"
+    },
+    "beaufort": {
+      "0": "Calm",
+      "1": "Light air",
+      "2": "Light breeze",
+      "3": "Gentle breeze",
+      "4": "Moderate breeze",
+      "5": "Fresh breeze",
+      "6": "Strong breeze",
+      "7": "Near gale",
+      "8": "Gale",
+      "9": "Strong gale",
+      "10": "Storm",
+      "11": "Violent storm",
+      "12": "Hurricane"
     }
   },
   "compare": {

@@ -12,3 +12,11 @@ export function formatDuration(ms: number, { showTenths = true } = {}): string {
   const base = hours > 0 ? `${hours}:${pad(minutes)}:${pad(seconds)}` : `${minutes}:${pad(seconds)}`
   return showTenths ? `${base}.${tenths}` : base
 }
+
+/** Formats milliseconds as `Xh Ym` (e.g. total daylight length). Hours omitted when zero. */
+export function formatHoursMinutes(ms: number): string {
+  const totalMinutes = Math.max(0, Math.round(ms / 60_000))
+  const hours = Math.floor(totalMinutes / 60)
+  const minutes = totalMinutes % 60
+  return hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`
+}

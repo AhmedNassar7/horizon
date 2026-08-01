@@ -60,6 +60,15 @@
     "airQuality": "Calidad del aire",
     "usAqi": "AQI de EE. UU.",
     "europeanAqi": "AQI europeo",
+    "dewPoint": "Punto de rocío",
+    "windGust": "Ráfagas",
+    "beaufortForce": "Fuerza {{force}}",
+    "visibility": "Visibilidad",
+    "uvIndex": "Índice UV",
+    "daylight": "Horas de luz",
+    "hourlyMetric": "Métrica del gráfico horario",
+    "precipitationChance": "Probabilidad de lluvia",
+    "windSpeed": "Velocidad del viento",
     "code": {
       "0": "Cielo despejado",
       "1": "Mayormente despejado",
@@ -135,6 +144,36 @@
       "waningGibbous": "Gibosa menguante",
       "lastQuarter": "Cuarto menguante",
       "waningCrescent": "Creciente menguante"
+    },
+    "visibilityLevel": {
+      "excellent": "Excelente",
+      "good": "Buena",
+      "moderate": "Moderada",
+      "poor": "Mala",
+      "unknown": "Desconocida"
+    },
+    "uvLevel": {
+      "low": "Bajo",
+      "moderate": "Moderado",
+      "high": "Alto",
+      "veryHigh": "Muy alto",
+      "extreme": "Extremo",
+      "unknown": "Desconocido"
+    },
+    "beaufort": {
+      "0": "Calma",
+      "1": "Ventolina",
+      "2": "Brisa muy débil",
+      "3": "Brisa ligera",
+      "4": "Brisa moderada",
+      "5": "Brisa fresca",
+      "6": "Brisa fuerte",
+      "7": "Viento fuerte",
+      "8": "Temporal",
+      "9": "Temporal fuerte",
+      "10": "Temporal duro",
+      "11": "Temporal muy duro",
+      "12": "Temporal huracanado"
     }
   },
   "compare": {

@@ -60,6 +60,15 @@
     "airQuality": "Qualité de l'air",
     "usAqi": "AQI américain",
     "europeanAqi": "AQI européen",
+    "dewPoint": "Point de rosée",
+    "windGust": "Rafales",
+    "beaufortForce": "Force {{force}}",
+    "visibility": "Visibilité",
+    "uvIndex": "Indice UV",
+    "daylight": "Durée du jour",
+    "hourlyMetric": "Indicateur du graphique horaire",
+    "precipitationChance": "Probabilité de pluie",
+    "windSpeed": "Vitesse du vent",
     "code": {
       "0": "Ciel dégagé",
       "1": "Généralement dégagé",
@@ -132,6 +141,36 @@
       "waningGibbous": "Gibbeuse décroissante",
       "lastQuarter": "Dernier quartier",
       "waningCrescent": "Dernier croissant"
+    },
+    "visibilityLevel": {
+      "excellent": "Excellente",
+      "good": "Bonne",
+      "moderate": "Modérée",
+      "poor": "Faible",
+      "unknown": "Inconnue"
+    },
+    "uvLevel": {
+      "low": "Faible",
+      "moderate": "Modéré",
+      "high": "Élevé",
+      "veryHigh": "Très élevé",
+      "extreme": "Extrême",
+      "unknown": "Inconnu"
+    },
+    "beaufort": {
+      "0": "Calme",
+      "1": "Très légère brise",
+      "2": "Légère brise",
+      "3": "Petite brise",
+      "4": "Jolie brise",
+      "5": "Bonne brise",
+      "6": "Vent frais",
+      "7": "Grand frais",
+      "8": "Coup de vent",
+      "9": "Fort coup de vent",
+      "10": "Tempête",
+      "11": "Violente tempête",
+      "12": "Ouragan"
     }
   },
   "compare": {
