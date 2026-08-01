@@ -126,6 +126,9 @@ function buildForecastResponse(city: FixtureCity) {
       cloud_cover: 20,
       is_day: 1,
       precipitation: 0,
+      visibility: 24140,
+      uv_index: 5,
+      dew_point_2m: temperatureC - 6,
     },
     hourly: {
       time: hourly,
@@ -133,6 +136,7 @@ function buildForecastResponse(city: FixtureCity) {
       precipitation_probability: hourly.map((_, i) => (i * 3) % 40),
       weather_code: hourly.map(() => weatherCode),
       is_day: hourly.map((_, i) => (i % 24 < 12 ? 1 : 0)),
+      wind_speed_10m: hourly.map((_, i) => 8 + (i % 6)),
     },
     daily: {
       time: daily,
