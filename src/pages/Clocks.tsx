@@ -4,6 +4,7 @@ import { useLocationStore } from '@/store/locationStore'
 import { CitySearch } from '@/components/search/CitySearch'
 import { WorldClockCard } from '@/components/time/WorldClockCard'
 import { TimeDifference } from '@/components/time/TimeDifference'
+import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 import type { CityResult } from '@/schemas/geocoding'
 
 export default function Clocks() {
@@ -32,6 +33,16 @@ export default function Clocks() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8">
       <title>{`${t('clocks.title')} — ${t('app.name')}`}</title>
+      <meta name="description" content={t('clocks.subtitle')} />
+      <meta property="og:title" content={`${t('clocks.title')} — ${t('app.name')}`} />
+      <meta property="og:description" content={t('clocks.subtitle')} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SITE_URL}/clocks`} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${t('clocks.title')} — ${t('app.name')}`} />
+      <meta name="twitter:description" content={t('clocks.subtitle')} />
+      <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       <div>
         <h1 className="font-display text-2xl font-semibold">{t('clocks.title')}</h1>

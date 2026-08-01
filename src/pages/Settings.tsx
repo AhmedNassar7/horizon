@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 
 function SettingRow({
   title,
@@ -44,6 +45,16 @@ export default function Settings() {
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-10">
       <title>{`${t('settings.title')} — ${t('app.name')}`}</title>
+      <meta name="description" content={`${t('settings.title')} — ${t('app.tagline')}`} />
+      <meta property="og:title" content={`${t('settings.title')} — ${t('app.name')}`} />
+      <meta property="og:description" content={`${t('settings.title')} — ${t('app.tagline')}`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SITE_URL}/settings`} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${t('settings.title')} — ${t('app.name')}`} />
+      <meta name="twitter:description" content={`${t('settings.title')} — ${t('app.tagline')}`} />
+      <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       <h1 className="font-display text-3xl font-semibold">{t('settings.title')}</h1>
 

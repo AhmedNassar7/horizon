@@ -7,6 +7,7 @@ import { LocationDashboard } from '@/components/weather/LocationDashboard'
 import { LocationEmptyState } from '@/components/weather/LocationEmptyState'
 import { CitySearch } from '@/components/search/CitySearch'
 import { Button } from '@/components/ui/button'
+import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 import type { CityResult } from '@/schemas/geocoding'
 
 export default function Home() {
@@ -48,6 +49,15 @@ export default function Home() {
     <>
       <title>{`${t('app.name')} — ${t('app.tagline')}`}</title>
       <meta name="description" content={t('app.tagline')} />
+      <meta property="og:title" content={`${t('app.name')} — ${t('app.tagline')}`} />
+      <meta property="og:description" content={t('app.tagline')} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SITE_URL}/`} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${t('app.name')} — ${t('app.tagline')}`} />
+      <meta name="twitter:description" content={t('app.tagline')} />
+      <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       {!activeLocation ? (
         <div className="mx-auto w-full max-w-2xl px-4 py-16">

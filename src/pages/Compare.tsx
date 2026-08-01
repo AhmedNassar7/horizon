@@ -9,6 +9,7 @@ import { resolveTimezone, formatTimeInZone } from '@/lib/timezone'
 import { getWeatherCodeInfo } from '@/lib/weatherCode'
 import { WeatherIcon } from '@/components/weather/WeatherIcon'
 import { formatTemperature } from '@/lib/units'
+import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 
 export default function Compare() {
   const { t } = useTranslation()
@@ -31,6 +32,16 @@ export default function Compare() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
       <title>{`${t('compare.title')} — ${t('app.name')}`}</title>
+      <meta name="description" content={`${t('compare.title')} — ${t('app.tagline')}`} />
+      <meta property="og:title" content={`${t('compare.title')} — ${t('app.name')}`} />
+      <meta property="og:description" content={`${t('compare.title')} — ${t('app.tagline')}`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SITE_URL}/compare`} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${t('compare.title')} — ${t('app.name')}`} />
+      <meta name="twitter:description" content={`${t('compare.title')} — ${t('app.tagline')}`} />
+      <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       {locations.length === 0 ? (
         <div className="mx-auto w-full max-w-2xl py-8 text-center">

@@ -6,6 +6,7 @@ import { useSettingsStore } from '@/store/settingsStore'
 import { buildViewerDayTimeline, isBusinessHour } from '@/lib/meetingPlanner'
 import { getLocalHour, resolveTimezone } from '@/lib/timezone'
 import { cn } from '@/lib/utils'
+import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 
 export default function Planner() {
   const { t, i18n } = useTranslation()
@@ -37,6 +38,16 @@ export default function Planner() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
       <title>{`${t('planner.title')} — ${t('app.name')}`}</title>
+      <meta name="description" content={`${t('planner.title')} — ${t('app.tagline')}`} />
+      <meta property="og:title" content={`${t('planner.title')} — ${t('app.name')}`} />
+      <meta property="og:description" content={`${t('planner.title')} — ${t('app.tagline')}`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SITE_URL}/planner`} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${t('planner.title')} — ${t('app.name')}`} />
+      <meta name="twitter:description" content={`${t('planner.title')} — ${t('app.tagline')}`} />
+      <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       {locations.length < 2 ? (
         <div className="mx-auto w-full max-w-2xl py-8 text-center">

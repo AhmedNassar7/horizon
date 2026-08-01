@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/compare</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/clocks</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/planner</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/timers</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/settings</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ahmednassar7.github.io/horizon/about</loc>
+    <priority>0.5</priority>
+  </url>
+</urlset>

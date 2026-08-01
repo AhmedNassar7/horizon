@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ahmednassar7.github.io/horizon/sitemap.xml

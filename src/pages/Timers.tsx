@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Stopwatch } from '@/components/time/Stopwatch'
 import { CountdownTimerCard } from '@/components/time/CountdownTimerCard'
+import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 
 interface TimerDraft {
   id: string
@@ -38,6 +39,16 @@ export default function Timers() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8">
       <title>{`${t('timers.title')} — ${t('app.name')}`}</title>
+      <meta name="description" content={`${t('timers.title')} — ${t('app.tagline')}`} />
+      <meta property="og:title" content={`${t('timers.title')} — ${t('app.name')}`} />
+      <meta property="og:description" content={`${t('timers.title')} — ${t('app.tagline')}`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SITE_URL}/timers`} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${t('timers.title')} — ${t('app.name')}`} />
+      <meta name="twitter:description" content={`${t('timers.title')} — ${t('app.tagline')}`} />
+      <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       <h1 className="font-display text-2xl font-semibold">{t('timers.title')}</h1>
 
