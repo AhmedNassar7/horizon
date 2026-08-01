@@ -65,7 +65,15 @@ export function LocationDashboard({ location }: { location: SavedLocation }) {
       )}
 
       <div className="flex justify-end">
-        <Clock timezone={timezone} className="text-right" />
+        {/* Unlike WorldClockCard (Clocks page), this Clock renders directly
+            over the weather-reactive gradient rather than its own page
+            background — glass-card gives it the same opaque-enough backing
+            everything else on this page gets, so its text color (which
+            follows the app THEME) stays legible against a gradient stop
+            that follows the location's actual day/night state instead
+            (e.g. light theme + night: dark theme text over a dark night
+            gradient, with no card, is close to unreadable). */}
+        <Clock timezone={timezone} className="glass-card px-4 py-3 text-right" />
       </div>
 
       {weather.isPending && <WeatherSkeleton />}

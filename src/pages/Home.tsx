@@ -65,7 +65,16 @@ export default function Home() {
         </div>
       ) : (
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+          {/* glass-card, not a bare flex row: this sits directly over the
+              weather-reactive gradient background (LocationDashboard below
+              renders it fixed/full-viewport). The search input is
+              bg-transparent by design elsewhere in the app (fine over the
+              app's own solid page background), so without an opaque-enough
+              backing here its placeholder text — which follows the app
+              THEME — can land unreadably close to the gradient's own color
+              when the gradient's day/night stop doesn't match the theme
+              (e.g. light theme + night). */}
+          <div className="glass-card flex flex-wrap items-center justify-between gap-4 p-3">
             <CitySearch onSelect={handleSelectCity} />
             {locations.length > 1 && (
               <Button asChild variant="outline" size="sm">
