@@ -4,7 +4,7 @@ import { resolveTimezone } from '@/lib/timezone'
 import { computeAdvisories } from '@/lib/advisories'
 import { CurrentConditions } from '@/components/weather/CurrentConditions'
 import { DailyForecast } from '@/components/weather/DailyForecast'
-import { WeatherBackground } from '@/components/weather/WeatherBackground'
+import { WeatherBackgroundFallback } from '@/components/weather/WeatherBackgroundFallback'
 import { WeatherAdvisories } from '@/components/weather/WeatherAdvisories'
 import { SunAndMoon } from '@/components/weather/SunAndMoon'
 import { AirQuality } from '@/components/weather/AirQuality'
@@ -18,6 +18,18 @@ import type { SavedLocation } from '@/store/locationStore'
 // without waiting on the charting library to download.
 const HourlyForecast = lazy(() =>
   import('@/components/weather/HourlyForecast').then((m) => ({ default: m.HourlyForecast })),
+)
+
+// Same reasoning for the decorative background: framer-motion is used only
+// here (a cross-fade between gradient themes) and nowhere else in the app,
+// yet it made up the vast majority of this chunk's bytes AND its unused
+// JavaScript (drag/pan/gesture code paths that a plain opacity fade never
+// touches). Splitting it out keeps the actual data (current conditions,
+// daily forecast, etc.) from waiting on framer-motion to download and
+// parse. The Suspense fallback renders the exact same gradient colors
+// without the fade, so nothing is visually blocked in the meantime.
+const WeatherBackground = lazy(() =>
+  import('@/components/weather/WeatherBackground').then((m) => ({ default: m.WeatherBackground })),
 )
 
 export function LocationDashboard({ location }: { location: SavedLocation }) {
@@ -37,10 +49,19 @@ export function LocationDashboard({ location }: { location: SavedLocation }) {
   return (
     <div className="flex flex-col gap-6">
       {weather.data && (
-        <WeatherBackground
-          code={weather.data.current.weatherCode}
-          isDay={weather.data.current.isDay}
-        />
+        <Suspense
+          fallback={
+            <WeatherBackgroundFallback
+              code={weather.data.current.weatherCode}
+              isDay={weather.data.current.isDay}
+            />
+          }
+        >
+          <WeatherBackground
+            code={weather.data.current.weatherCode}
+            isDay={weather.data.current.isDay}
+          />
+        </Suspense>
       )}
 
       <div className="flex justify-end">

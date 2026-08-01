@@ -3,6 +3,7 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,6 +11,19 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    // Only active for `npm run build:analyze` — writes an interactive
+    // treemap of the production bundle to dist/stats.html so chunk
+    // composition can be inspected without leaving anything behind on
+    // normal builds. Checking npm_lifecycle_event (rather than a custom
+    // env var) keeps the script cross-platform without needing cross-env.
+    // See package.json for the script.
+    process.env.npm_lifecycle_event === 'build:analyze' &&
+      visualizer({
+        filename: 'dist/stats.html',
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap',
+      }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon.ico', 'icons/*.png'],
