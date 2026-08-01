@@ -30,6 +30,19 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    // Blocked by default: vite.config.ts registers a NetworkFirst service
+    // worker for the Open-Meteo API routes in production builds (which is
+    // what this suite runs against, see above). Once that worker activates
+    // mid-test, it starts handling those fetches itself — from inside the
+    // worker's own execution context, invisible to page.route() — so our
+    // API mocks silently stop applying and requests fall through to the
+    // real network. In an environment with real outbound internet (e.g.
+    // GitHub Actions, unlike this sandbox) that doesn't error, it just
+    // returns real, non-deterministic data, producing exactly the kind of
+    // CI-only flake this comment is warning you about. e2e/pwa.spec.ts
+    // opts back in with `test.use({ serviceWorkers: 'allow' })` since it's
+    // the one spec that actually needs a real service worker registered.
+    serviceWorkers: 'block',
   },
 
   projects: [

@@ -14,6 +14,10 @@ import { seedLocations } from './fixtures/seed'
  * against a dev server regardless of network conditions.
  */
 test.describe('PWA', () => {
+  // Overrides playwright.config.ts's global `serviceWorkers: 'block'` — this
+  // is the one spec that actually needs a real service worker to register.
+  test.use({ serviceWorkers: 'allow' })
+
   test.beforeEach(async ({ page }) => {
     await seedLocations(page, [NEW_YORK])
     if (!REAL_API) await installApiMocks(page)
