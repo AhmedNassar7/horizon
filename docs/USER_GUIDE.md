@@ -57,6 +57,6 @@ Horizon is an installable PWA. Most browsers will offer an install prompt after 
 
 ## Your data stays on your device
 
-Nothing you search, save, or set is sent anywhere — it's stored only in your browser's local storage. There's no account, no tracking, and no server that could leak it.
+Nothing you search, save, or set is sent anywhere — it's stored only in your browser's local storage. There's no account and no server that could leak it. The site does use Google Analytics for anonymous traffic insights, unrelated to anything you save.
 
 ← [Back to README](../README.md) · [Developer Guide](./DEVELOPER_GUIDE.md)

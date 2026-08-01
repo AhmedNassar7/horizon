@@ -240,10 +240,10 @@
   },
   "about": {
     "title": "About Horizon",
-    "intro": "Horizon is a free, client-only weather and world-time app. Everything runs in your browser — there is no backend, no account, and nothing is tracked.",
+    "intro": "Horizon is a free, client-only weather and world-time app. Everything runs in your browser — there is no backend and no account required.",
     "dataSources": "Data sources",
     "privacy": "Privacy",
-    "privacyBody": "No accounts, no cookies, no analytics trackers. Your saved locations and preferences are stored only in your browser's local storage.",
+    "privacyBody": "No accounts required. Your saved locations and preferences are stored only in your browser's local storage. This site does use Google Analytics to understand traffic and usage.",
     "sources": {
       "openMeteo": {
         "name": "Open-Meteo",

@@ -234,10 +234,10 @@
   },
   "about": {
     "title": "关于 Horizon",
-    "intro": "Horizon 是一款免费的、纯客户端运行的天气与世界时间应用。一切都在你的浏览器中运行 — 没有后端服务器，无需账号，也不会被跟踪。",
+    "intro": "Horizon 是一款免费的、纯客户端运行的天气与世界时间应用。一切都在你的浏览器中运行 — 没有后端服务器，也无需账号。",
     "dataSources": "数据来源",
     "privacy": "隐私",
-    "privacyBody": "没有账号、没有 Cookie、没有分析跟踪工具。你保存的地点和偏好设置仅存储在你浏览器的本地存储中。",
+    "privacyBody": "无需账号。你保存的地点和偏好设置仅存储在你浏览器的本地存储中。本网站确实使用 Google Analytics 来了解访问量和使用情况。",
     "sources": {
       "openMeteo": { "name": "Open-Meteo", "use": "实时天气、每小时/每日预报、空气质量、天气提醒" },
       "openMeteoGeocoding": { "name": "Open-Meteo 地理编码", "use": "城市搜索与坐标定位" },

@@ -30,6 +30,12 @@ jobs:
       - run: npx tsc -b
       - run: npm run test
       - run: npm run build
+        env:
+          # Optional GA4 Measurement ID — a repo *variable* (not a secret,
+          # see src/lib/analytics.ts), unset until the GA4 property exists.
+          # Vite only inlines VITE_* vars present at build time, so this must
+          # be threaded in here rather than relying on a committed .env file.
+          VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

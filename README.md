@@ -4,7 +4,7 @@
 
 **Weather and time, everywhere.**
 
-A fast, installable, client-only weather + world-time PWA — no backend, no accounts, no tracking.
+A fast, installable, client-only weather + world-time PWA — no backend, no accounts.
 
 [![Deploy](https://github.com/AhmedNassar7/horizon/actions/workflows/deploy.yml/badge.svg)](https://github.com/AhmedNassar7/horizon/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
@@ -61,7 +61,7 @@ flowchart LR
     Query -.->|"cached responses\n(in memory)"| UI
 ```
 
-**Worth calling out:** `weatherProvider` is an adapter interface (`src/api/weatherProvider.ts`), not a direct call to Open-Meteo, so swapping the data source later wouldn't touch component code. Every fetch response is validated with Zod at the network boundary (`src/api/httpClient.ts`) — an unexpected API shape fails loudly instead of silently corrupting UI state. User data lives only in `localStorage` under `horizon:*` keys; nothing is sent anywhere.
+**Worth calling out:** `weatherProvider` is an adapter interface (`src/api/weatherProvider.ts`), not a direct call to Open-Meteo, so swapping the data source later wouldn't touch component code. Every fetch response is validated with Zod at the network boundary (`src/api/httpClient.ts`) — an unexpected API shape fails loudly instead of silently corrupting UI state. User data lives only in `localStorage` under `horizon:*` keys and is never sent anywhere. Separately, the site does use Google Analytics for anonymous traffic insights (`src/lib/analytics.ts`, opt-out by simply not configuring `VITE_GA_MEASUREMENT_ID`) — it has no access to `localStorage` and never sees saved locations or preferences.
 
 ## Highlights
 

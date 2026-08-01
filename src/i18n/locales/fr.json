@@ -243,10 +243,10 @@
   },
   "about": {
     "title": "À propos de Horizon",
-    "intro": "Horizon est une application météo et d'heure mondiale gratuite, entièrement côté client. Tout fonctionne dans votre navigateur — pas de serveur, pas de compte, aucun suivi.",
+    "intro": "Horizon est une application météo et d'heure mondiale gratuite, entièrement côté client. Tout fonctionne dans votre navigateur — pas de serveur, pas de compte requis.",
     "dataSources": "Sources de données",
     "privacy": "Confidentialité",
-    "privacyBody": "Pas de comptes, pas de cookies, pas de traceurs analytiques. Vos lieux enregistrés et préférences sont stockés uniquement dans le stockage local de votre navigateur.",
+    "privacyBody": "Aucun compte requis. Vos lieux enregistrés et préférences sont stockés uniquement dans le stockage local de votre navigateur. Ce site utilise Google Analytics pour mieux comprendre le trafic et l'utilisation.",
     "sources": {
       "openMeteo": {
         "name": "Open-Meteo",
