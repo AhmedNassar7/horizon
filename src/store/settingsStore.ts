@@ -25,7 +25,7 @@ export const useSettingsStore = create<SettingsState>()(
       theme: 'auto',
       temperatureUnit: 'celsius',
       windUnit: 'kmh',
-      timeFormat: '24h',
+      timeFormat: '12h',
       language: 'en',
       setTheme: (theme) => set({ theme }),
       setTemperatureUnit: (temperatureUnit) => set({ temperatureUnit }),
