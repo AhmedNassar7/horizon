@@ -23,13 +23,14 @@ function toResolvedLocation(
 export async function reverseGeocode(
   latitude: number,
   longitude: number,
+  signal?: AbortSignal,
 ): Promise<ResolvedLocation> {
   const url = new URL(REVERSE_GEOCODE_URL)
   url.searchParams.set('latitude', String(latitude))
   url.searchParams.set('longitude', String(longitude))
   url.searchParams.set('localityLanguage', 'en')
 
-  const raw = await fetchValidated(url, bigDataCloudLocationSchema)
+  const raw = await fetchValidated(url, bigDataCloudLocationSchema, { signal })
   return toResolvedLocation(raw, { latitude, longitude })
 }
 

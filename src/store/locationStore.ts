@@ -10,7 +10,7 @@ export interface SavedLocation {
   longitude: number
 }
 
-const MAX_SAVED_LOCATIONS = 10
+export const MAX_SAVED_LOCATIONS = 10
 
 interface LocationState {
   locations: SavedLocation[]
