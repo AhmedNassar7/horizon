@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
@@ -6,7 +6,9 @@ import { useGeolocation } from '@/hooks/useGeolocation'
 import { LocationDashboard } from '@/components/weather/LocationDashboard'
 import { LocationEmptyState } from '@/components/weather/LocationEmptyState'
 import { CitySearch } from '@/components/search/CitySearch'
+import { Clock } from '@/components/time/Clock'
 import { Button } from '@/components/ui/button'
+import { resolveTimezone } from '@/lib/timezone'
 import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 import type { CityResult } from '@/schemas/geocoding'
 
@@ -17,6 +19,12 @@ export default function Home() {
   const addLocation = useLocationStore((s) => s.addLocation)
 
   const activeLocation = locations.find((l) => l.id === activeLocationId) ?? locations[0] ?? null
+
+  const timezone = useMemo(
+    () =>
+      activeLocation ? resolveTimezone(activeLocation.latitude, activeLocation.longitude) : null,
+    [activeLocation],
+  )
 
   const shouldGeolocate = locations.length === 0
   const geolocation = useGeolocation(shouldGeolocate)
@@ -72,11 +80,18 @@ export default function Home() {
         </div>
       ) : (
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8">
-          {/* Capped narrower than the page container below: at the page's
-              full max-w-6xl width a search bar stretching edge-to-edge would
-              look stretched/awkward, so this row stays reasonably narrow
-              and centered while LocationDashboard uses the full width. */}
-          <div className="mx-auto w-full max-w-3xl">
+          {/* Search and the clock used to live in two separate rows with two
+              different max-widths (this row capped at max-w-3xl, the clock
+              full-width-right-aligned inside LocationDashboard's max-w-6xl)
+              — visually that left a large, unbalanced gap between them.
+              They're a single row now, capped together at max-w-4xl so the
+              header stays a reasonably-sized, centered unit distinct from
+              the wider max-w-6xl dashboard grid below (an uncapped row would
+              stretch the search input edge-to-edge on wide screens, which is
+              its own kind of awkward). Stacked on mobile, side by side from
+              sm up. LocationDashboard's own clock row is suppressed
+              (`showClock={false}`) since this one already covers it. */}
+          <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 sm:flex-row sm:items-center">
             {/* glass-card, not a bare flex row: this sits directly over the
                 weather-reactive gradient background (LocationDashboard below
                 renders it fixed/full-viewport). The search input is
@@ -86,7 +101,7 @@ export default function Home() {
                 THEME — can land unreadably close to the gradient's own color
                 when the gradient's day/night stop doesn't match the theme
                 (e.g. light theme + night). */}
-            <div className="glass-card flex flex-wrap items-center justify-between gap-4 p-3">
+            <div className="glass-card flex min-w-0 flex-1 flex-wrap items-center justify-between gap-4 p-3">
               <CitySearch onSelect={handleSelectCity} />
               {locations.length > 1 && (
                 <Button asChild variant="outline" size="sm">
@@ -94,9 +109,12 @@ export default function Home() {
                 </Button>
               )}
             </div>
+            {timezone && (
+              <Clock timezone={timezone} className="glass-card shrink-0 px-4 py-3 text-right" />
+            )}
           </div>
 
-          <LocationDashboard location={activeLocation} />
+          <LocationDashboard location={activeLocation} showClock={false} />
         </div>
       )}
     </>

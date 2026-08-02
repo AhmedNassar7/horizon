@@ -38,7 +38,18 @@ const LocationMap = lazy(() =>
   import('@/components/weather/LocationMap').then((m) => ({ default: m.LocationMap })),
 )
 
-export function LocationDashboard({ location }: { location: SavedLocation }) {
+export function LocationDashboard({
+  location,
+  showClock = true,
+}: {
+  location: SavedLocation
+  /** Home.tsx renders its own Clock alongside the search bar (in the same
+   * row, so the two don't end up in separate, differently-capped-width rows
+   * with a large gap between them) and suppresses this one to avoid showing
+   * two. Location.tsx has no search bar to share a row with, so it leaves
+   * this at its default and keeps the clock here instead. */
+  showClock?: boolean
+}) {
   const weather = useWeather(location.latitude, location.longitude)
   const airQuality = useAirQuality(location.latitude, location.longitude)
 
@@ -70,17 +81,19 @@ export function LocationDashboard({ location }: { location: SavedLocation }) {
         </Suspense>
       )}
 
-      <div className="flex justify-end">
-        {/* Unlike WorldClockCard (Clocks page), this Clock renders directly
-            over the weather-reactive gradient rather than its own page
-            background — glass-card gives it the same opaque-enough backing
-            everything else on this page gets, so its text color (which
-            follows the app THEME) stays legible against a gradient stop
-            that follows the location's actual day/night state instead
-            (e.g. light theme + night: dark theme text over a dark night
-            gradient, with no card, is close to unreadable). */}
-        <Clock timezone={timezone} className="glass-card px-4 py-3 text-right" />
-      </div>
+      {showClock && (
+        <div className="flex justify-end">
+          {/* Unlike WorldClockCard (Clocks page), this Clock renders directly
+              over the weather-reactive gradient rather than its own page
+              background — glass-card gives it the same opaque-enough backing
+              everything else on this page gets, so its text color (which
+              follows the app THEME) stays legible against a gradient stop
+              that follows the location's actual day/night state instead
+              (e.g. light theme + night: dark theme text over a dark night
+              gradient, with no card, is close to unreadable). */}
+          <Clock timezone={timezone} className="glass-card px-4 py-3 text-right" />
+        </div>
+      )}
 
       {weather.isPending && <WeatherSkeleton />}
       {weather.isError && <WeatherErrorState onRetry={() => weather.refetch()} />}
