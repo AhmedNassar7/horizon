@@ -28,7 +28,9 @@
   },
   "footer": {
     "dataSource": "Données météo par Open-Meteo",
-    "sourceCode": "Code source"
+    "sourceCode": "Code source",
+    "builtBy": "Créé par <author>{{name}}</author>",
+    "license": "Licence MIT"
   },
   "notFound": {
     "title": "Horizon perdu",

@@ -28,7 +28,9 @@
   },
   "footer": {
     "dataSource": "天气数据来自 Open-Meteo",
-    "sourceCode": "源代码"
+    "sourceCode": "源代码",
+    "builtBy": "由 <author>{{name}}</author> 制作",
+    "license": "MIT 许可证"
   },
   "notFound": {
     "title": "迷失了地平线",

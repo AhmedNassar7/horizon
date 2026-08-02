@@ -28,7 +28,9 @@
   },
   "footer": {
     "dataSource": "بيانات الطقس من Open-Meteo",
-    "sourceCode": "الشيفرة المصدرية"
+    "sourceCode": "الشيفرة المصدرية",
+    "builtBy": "بُني بواسطة <author>{{name}}</author>",
+    "license": "رخصة MIT"
   },
   "notFound": {
     "title": "الأفق مفقود",

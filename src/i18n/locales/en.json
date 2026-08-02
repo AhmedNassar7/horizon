@@ -28,7 +28,9 @@
   },
   "footer": {
     "dataSource": "Weather data by Open-Meteo",
-    "sourceCode": "Source code"
+    "sourceCode": "Source code",
+    "builtBy": "Built by <author>{{name}}</author>",
+    "license": "MIT License"
   },
   "notFound": {
     "title": "Lost the horizon",
