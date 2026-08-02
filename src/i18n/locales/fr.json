@@ -40,7 +40,8 @@
   "home": {
     "findingLocation": "Recherche de votre position…",
     "getStarted": "Trouvons votre météo",
-    "getStartedBody": "Recherchez une ville pour commencer, ou autorisez l'accès à la position."
+    "getStartedBody": "Recherchez une ville pour commencer, ou autorisez l'accès à la position.",
+    "globeAriaLabel": "Globe interactif — faites glisser ou utilisez les flèches du clavier pour le faire pivoter, et cliquez sur un point pour explorer cet endroit. Facultatif : la recherche ci-dessus fonctionne tout aussi bien."
   },
   "weather": {
     "feelsLike": "Ressenti",

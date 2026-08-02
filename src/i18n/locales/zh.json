@@ -40,7 +40,8 @@
   "home": {
     "findingLocation": "正在定位…",
     "getStarted": "开始查看天气吧",
-    "getStartedBody": "搜索城市开始使用，或允许访问你的位置。"
+    "getStartedBody": "搜索城市开始使用，或允许访问你的位置。",
+    "globeAriaLabel": "互动地球仪——拖动或使用方向键旋转，点击某一点即可探索该地点。此项为可选：上方的搜索框同样好用。"
   },
   "weather": {
     "feelsLike": "体感温度",

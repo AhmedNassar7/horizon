@@ -60,7 +60,14 @@ export default function Home() {
       <meta name="twitter:image" content={OG_IMAGE_URL} />
 
       {!activeLocation ? (
-        <div className="mx-auto w-full max-w-2xl px-4 py-16">
+        // Wider than before (max-w-2xl): LocationEmptyState now also renders
+        // LocationGlobe, a genuine ~420-480px-diameter globe, which max-w-2xl
+        // (42rem/672px) would leave feeling cramped/edge-to-edge next to its
+        // own card padding. max-w-3xl gives the globe real breathing room
+        // without reintroducing the "huge unused side gutters" problem —
+        // this is still a single centered card, not a full-width grid like
+        // LocationDashboard, so it doesn't need max-w-6xl's extra width.
+        <div className="mx-auto w-full max-w-3xl px-4 py-16">
           <LocationEmptyState onSelectCity={handleSelectCity} isLocating={geolocation.isFetching} />
         </div>
       ) : (

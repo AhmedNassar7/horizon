@@ -40,7 +40,8 @@
   "home": {
     "findingLocation": "Buscando tu ubicación…",
     "getStarted": "Encontremos tu clima",
-    "getStartedBody": "Busca una ciudad para empezar, o permite el acceso a tu ubicación."
+    "getStartedBody": "Busca una ciudad para empezar, o permite el acceso a tu ubicación.",
+    "globeAriaLabel": "Globo interactivo — arrastra o usa las flechas del teclado para rotarlo, y haz clic en un punto para explorar esa ubicación. Opcional: el buscador de arriba funciona igual de bien."
   },
   "weather": {
     "feelsLike": "Sensación térmica",

@@ -40,7 +40,8 @@
   "home": {
     "findingLocation": "Finding your location…",
     "getStarted": "Let's find your weather",
-    "getStartedBody": "Search for a city to get started, or allow location access."
+    "getStartedBody": "Search for a city to get started, or allow location access.",
+    "globeAriaLabel": "Interactive globe — drag or use arrow keys to rotate, click a point to explore that location. Optional: search above works just as well."
   },
   "weather": {
     "feelsLike": "Feels like",
