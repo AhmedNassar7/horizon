@@ -12,7 +12,7 @@ export default function Location() {
   const location = locations.find((l) => l.id === slug)
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 py-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-8">
       <title>{location ? `${location.name} — ${t('app.name')}` : t('app.name')}</title>
       <meta
         name="description"

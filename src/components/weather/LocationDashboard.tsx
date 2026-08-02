@@ -85,28 +85,41 @@ export function LocationDashboard({ location }: { location: SavedLocation }) {
       {weather.isPending && <WeatherSkeleton />}
       {weather.isError && <WeatherErrorState onRetry={() => weather.refetch()} />}
       {weather.data && (
-        <>
-          <WeatherAdvisories advisories={advisories} />
-          <CurrentConditions
-            current={weather.data.current}
-            locationName={[location.name, location.country].filter(Boolean).join(', ')}
-          />
-          <Suspense fallback={<div className="glass-card h-56 animate-pulse" />}>
-            <HourlyForecast hours={weather.data.hourly} timezone={weather.data.timezone} />
-          </Suspense>
-          <DailyForecast days={weather.data.daily} />
-          {weather.data.daily[0] && (
-            <SunAndMoon today={weather.data.daily[0]} timezone={weather.data.timezone} />
-          )}
-          <Suspense fallback={<div className="glass-card h-64 animate-pulse" />}>
-            <LocationMap
-              latitude={location.latitude}
-              longitude={location.longitude}
-              name={[location.name, location.country].filter(Boolean).join(', ')}
+        // Single column on mobile/tablet (unchanged). At lg+ the page
+        // container is wide (max-w-6xl, see Home.tsx/Location.tsx) and a
+        // single centered column here would leave large empty gutters on
+        // both sides — so from lg up this splits into a wider "forecast"
+        // column and a narrower "details" sidebar, each independently
+        // height-driven (`items-start`, rather than the default stretch,
+        // so the shorter column doesn't get forced to match the taller
+        // one's height and end up with dead space of its own at the
+        // bottom).
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
+          <div className="flex flex-col gap-6 lg:col-span-2">
+            <WeatherAdvisories advisories={advisories} />
+            <CurrentConditions
+              current={weather.data.current}
+              locationName={[location.name, location.country].filter(Boolean).join(', ')}
             />
-          </Suspense>
-          {airQuality.data && <AirQuality data={airQuality.data} />}
-        </>
+            <Suspense fallback={<div className="glass-card h-56 animate-pulse" />}>
+              <HourlyForecast hours={weather.data.hourly} timezone={weather.data.timezone} />
+            </Suspense>
+            <DailyForecast days={weather.data.daily} />
+          </div>
+          <div className="flex flex-col gap-6 lg:col-span-1">
+            {weather.data.daily[0] && (
+              <SunAndMoon today={weather.data.daily[0]} timezone={weather.data.timezone} />
+            )}
+            <Suspense fallback={<div className="glass-card h-64 animate-pulse" />}>
+              <LocationMap
+                latitude={location.latitude}
+                longitude={location.longitude}
+                name={[location.name, location.country].filter(Boolean).join(', ')}
+              />
+            </Suspense>
+            {airQuality.data && <AirQuality data={airQuality.data} />}
+          </div>
+        </div>
       )}
     </div>
   )
