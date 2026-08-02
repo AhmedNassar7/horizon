@@ -32,6 +32,12 @@ const WeatherBackground = lazy(() =>
   import('@/components/weather/WeatherBackground').then((m) => ({ default: m.WeatherBackground })),
 )
 
+// Same reasoning again: Leaflet (~40KB gzip) is only needed for this one
+// section, so it shouldn't block the synchronously-loaded dashboard chunk.
+const LocationMap = lazy(() =>
+  import('@/components/weather/LocationMap').then((m) => ({ default: m.LocationMap })),
+)
+
 export function LocationDashboard({ location }: { location: SavedLocation }) {
   const weather = useWeather(location.latitude, location.longitude)
   const airQuality = useAirQuality(location.latitude, location.longitude)
@@ -92,6 +98,13 @@ export function LocationDashboard({ location }: { location: SavedLocation }) {
           {weather.data.daily[0] && (
             <SunAndMoon today={weather.data.daily[0]} timezone={weather.data.timezone} />
           )}
+          <Suspense fallback={<div className="glass-card h-64 animate-pulse" />}>
+            <LocationMap
+              latitude={location.latitude}
+              longitude={location.longitude}
+              name={[location.name, location.country].filter(Boolean).join(', ')}
+            />
+          </Suspense>
           {airQuality.data && <AirQuality data={airQuality.data} />}
         </>
       )}

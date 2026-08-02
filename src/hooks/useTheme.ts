@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSettingsStore, type ThemeMode } from '@/store/settingsStore'
 
 function resolveIsDark(theme: ThemeMode) {
@@ -11,10 +11,15 @@ function resolveIsDark(theme: ThemeMode) {
 export function useTheme() {
   const theme = useSettingsStore((s) => s.theme)
   const setTheme = useSettingsStore((s) => s.setTheme)
+  const [isDark, setIsDark] = useState(() => resolveIsDark(theme))
 
   useEffect(() => {
     const root = document.documentElement
-    const apply = () => root.classList.toggle('dark', resolveIsDark(theme))
+    const apply = () => {
+      const dark = resolveIsDark(theme)
+      root.classList.toggle('dark', dark)
+      setIsDark(dark)
+    }
     apply()
 
     if (theme !== 'auto') return
@@ -24,5 +29,5 @@ export function useTheme() {
     return () => media.removeEventListener('change', apply)
   }, [theme])
 
-  return { theme, setTheme }
+  return { theme, setTheme, isDark }
 }

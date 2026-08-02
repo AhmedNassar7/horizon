@@ -71,6 +71,9 @@
     "hourlyMetric": "Hourly chart metric",
     "precipitationChance": "Chance of rain",
     "windSpeed": "Wind speed",
+    "map": "Map",
+    "mapExpand": "View larger map",
+    "mapInteractHint": "Click or tap to interact with the map",
     "code": {
       "0": "Clear sky",
       "1": "Mainly clear",
