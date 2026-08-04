@@ -9,7 +9,10 @@ export function AirQuality({ data }: { data: AirQualityData }) {
   const level = getAirQualityLevel(data.usAqi)
 
   return (
-    <section aria-label={t('weather.airQuality')} className="glass-card p-6">
+    <section
+      aria-label={t('weather.airQuality')}
+      className="glass-card animate-in fade-in slide-in-from-bottom-2 ease-expo-out p-6 duration-300"
+    >
       <h2 className="font-display text-lg font-semibold">{t('weather.airQuality')}</h2>
       <div className="mt-4 flex flex-wrap items-center gap-4">
         <div

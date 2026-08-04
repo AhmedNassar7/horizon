@@ -18,7 +18,10 @@ export function WeatherAdvisories({ advisories }: { advisories: Advisory[] }) {
     // Plain divs, not a <ul>/<li> list: each item's real role is "status" (an
     // ARIA live region), not "listitem", and mixing the two breaks the
     // list/listitem structural relationship axe checks for.
-    <div className="flex flex-col gap-2" aria-label="Forecast advisories">
+    <div
+      className="animate-in fade-in slide-in-from-bottom-2 ease-expo-out flex flex-col gap-2 duration-300"
+      aria-label="Forecast advisories"
+    >
       {advisories.map((advisory) => (
         <div
           key={advisory.id}

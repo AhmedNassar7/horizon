@@ -461,7 +461,10 @@ export function LocationMap({ latitude, longitude, name }: LocationMapProps) {
   const { isDark } = useTheme()
 
   return (
-    <section aria-label={t('weather.map')} className="glass-card p-6">
+    <section
+      aria-label={t('weather.map')}
+      className="glass-card animate-in fade-in slide-in-from-bottom-2 ease-expo-out p-6 duration-300"
+    >
       <div className="flex items-center justify-between gap-2">
         <h2 className="font-display text-lg font-semibold">{t('weather.map')}</h2>
         <Dialog>

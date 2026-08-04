@@ -1,5 +1,11 @@
 import { useQueries } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+// Compare.tsx is already behind React.lazy() in App.tsx, so importing
+// framer-motion here never touches the eagerly-bundled main chunk (see
+// WeatherBackground.tsx for the precedent). AnimatePresence lets a card
+// animate out when its location is removed (from Clocks/elsewhere, since
+// this grid shares useLocationStore's `locations`) instead of vanishing.
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -16,6 +22,11 @@ export default function Compare() {
   const locations = useLocationStore((s) => s.locations)
   const temperatureUnit = useSettingsStore((s) => s.temperatureUnit)
   const timeFormat = useSettingsStore((s) => s.timeFormat)
+
+  const prefersReducedMotion = useReducedMotion()
+  const cardTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.2, ease: [0.16, 1, 0.3, 1] as const }
 
   const results = useQueries({
     queries: locations.map((location) => {
@@ -52,56 +63,68 @@ export default function Compare() {
         <>
           <h1 className="font-display text-2xl font-semibold">{t('compare.title')}</h1>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {locations.map((location, index) => {
-              const query = results[index]
-              const timezone = resolveTimezone(location.latitude, location.longitude)
+            <AnimatePresence initial={false} mode="popLayout">
+              {locations.map((location, index) => {
+                const query = results[index]
+                const timezone = resolveTimezone(location.latitude, location.longitude)
 
-              return (
-                <Link
-                  key={location.id}
-                  to={`/location/${location.id}`}
-                  className="glass-card hover:ring-ring/40 flex flex-col gap-3 p-5 transition-shadow hover:ring-2"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium">{location.name}</p>
-                      <p className="text-muted-foreground text-xs">
-                        {[location.admin1, location.country].filter(Boolean).join(', ')}
-                      </p>
-                    </div>
-                    <p className="text-muted-foreground text-xs tabular-nums">
-                      {formatTimeInZone(new Date(), timezone, {
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        hour12: timeFormat === '12h',
-                      })}
-                    </p>
-                  </div>
-
-                  {query?.isPending && <div className="bg-muted h-16 animate-pulse rounded-lg" />}
-                  {query?.isError && (
-                    <p className="text-muted-foreground text-sm">{t('compare.loadError')}</p>
-                  )}
-                  {query?.data && (
-                    <div className="flex items-center gap-3">
-                      <WeatherIcon
-                        code={query.data.current.weatherCode}
-                        isDay={query.data.current.isDay}
-                        className="text-primary size-9"
-                      />
-                      <div>
-                        <p className="font-display text-3xl font-semibold tabular-nums">
-                          {formatTemperature(query.data.current.temperatureC, temperatureUnit)}
-                        </p>
-                        <p className="text-muted-foreground text-xs">
-                          {t(getWeatherCodeInfo(query.data.current.weatherCode).labelKey)}
+                return (
+                  <motion.div
+                    key={location.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={cardTransition}
+                  >
+                    <Link
+                      to={`/location/${location.id}`}
+                      className="glass-card hover:ring-ring/40 flex flex-col gap-3 p-5 transition-all hover:ring-2 active:not-aria-[haspopup]:translate-y-px"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium">{location.name}</p>
+                          <p className="text-muted-foreground text-xs">
+                            {[location.admin1, location.country].filter(Boolean).join(', ')}
+                          </p>
+                        </div>
+                        <p className="text-muted-foreground text-xs tabular-nums">
+                          {formatTimeInZone(new Date(), timezone, {
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            hour12: timeFormat === '12h',
+                          })}
                         </p>
                       </div>
-                    </div>
-                  )}
-                </Link>
-              )
-            })}
+
+                      {query?.isPending && (
+                        <div className="bg-muted h-16 animate-pulse rounded-lg" />
+                      )}
+                      {query?.isError && (
+                        <p className="text-muted-foreground text-sm">{t('compare.loadError')}</p>
+                      )}
+                      {query?.data && (
+                        <div className="flex items-center gap-3">
+                          <WeatherIcon
+                            code={query.data.current.weatherCode}
+                            isDay={query.data.current.isDay}
+                            className="text-primary size-9"
+                          />
+                          <div>
+                            <p className="font-display text-3xl font-semibold tabular-nums">
+                              {formatTemperature(query.data.current.temperatureC, temperatureUnit)}
+                            </p>
+                            <p className="text-muted-foreground text-xs">
+                              {t(getWeatherCodeInfo(query.data.current.weatherCode).labelKey)}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </Link>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
           </div>
         </>
       )}

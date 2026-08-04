@@ -67,7 +67,10 @@ export function CurrentConditions({
   const uvLevel = getUvIndexLevel(current.uvIndex)
 
   return (
-    <section aria-labelledby="current-location-name" className="glass-card p-6">
+    <section
+      aria-labelledby="current-location-name"
+      className="glass-card animate-in fade-in slide-in-from-bottom-2 ease-expo-out p-6 duration-300"
+    >
       <div className="flex flex-wrap items-start justify-between gap-6">
         <div>
           <h1 id="current-location-name" className="font-display text-xl font-semibold">

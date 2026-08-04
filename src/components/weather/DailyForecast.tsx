@@ -23,7 +23,10 @@ export function DailyForecast({ days }: { days: DailyForecastPoint[] }) {
   const span = Math.max(rangeMax - rangeMin, 1)
 
   return (
-    <section aria-label={t('weather.sevenDayForecast')} className="glass-card p-6">
+    <section
+      aria-label={t('weather.sevenDayForecast')}
+      className="glass-card animate-in fade-in slide-in-from-bottom-2 ease-expo-out p-6 duration-300"
+    >
       <h2 className="font-display text-lg font-semibold">{t('weather.sevenDayForecast')}</h2>
       <ul className="mt-4 flex flex-col gap-3">
         {days.map((day, index) => {

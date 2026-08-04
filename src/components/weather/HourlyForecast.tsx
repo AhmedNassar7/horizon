@@ -47,7 +47,10 @@ export function HourlyForecast({
   }))
 
   return (
-    <section aria-label={t('weather.next24Hours')} className="glass-card p-6">
+    <section
+      aria-label={t('weather.next24Hours')}
+      className="glass-card animate-in fade-in slide-in-from-bottom-2 ease-expo-out p-6 duration-300"
+    >
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="font-display text-lg font-semibold">{t('weather.next24Hours')}</h2>
         <div role="group" aria-label={t('weather.hourlyMetric')} className="flex gap-1">

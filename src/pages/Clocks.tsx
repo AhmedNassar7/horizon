@@ -1,4 +1,10 @@
 import { useEffect, useState } from 'react'
+// Clocks.tsx is already behind React.lazy() in App.tsx, so importing
+// framer-motion here never touches the eagerly-bundled main chunk (see
+// WeatherBackground.tsx for the precedent). AnimatePresence lets a removed
+// card animate out instead of just vanishing, and `layout` on the survivors
+// smoothly closes the gap it leaves in the grid.
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useLocationStore } from '@/store/locationStore'
 import { CitySearch } from '@/components/search/CitySearch'
@@ -18,6 +24,11 @@ export default function Clocks() {
     const interval = setInterval(() => setNow(new Date()), 60_000)
     return () => clearInterval(interval)
   }, [])
+
+  const prefersReducedMotion = useReducedMotion()
+  const cardTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.2, ease: [0.16, 1, 0.3, 1] as const }
 
   const handleSelect = (city: CityResult) => {
     addLocation({
@@ -55,14 +66,24 @@ export default function Clocks() {
         <p className="text-muted-foreground text-sm">{t('clocks.empty')}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {locations.map((location) => (
-            <WorldClockCard
-              key={location.id}
-              location={location}
-              now={now}
-              onRemove={() => removeLocation(location.id)}
-            />
-          ))}
+          <AnimatePresence initial={false} mode="popLayout">
+            {locations.map((location) => (
+              <motion.div
+                key={location.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={cardTransition}
+              >
+                <WorldClockCard
+                  location={location}
+                  now={now}
+                  onRemove={() => removeLocation(location.id)}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       )}
 

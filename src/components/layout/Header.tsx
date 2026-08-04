@@ -103,7 +103,7 @@ export function Header() {
             end={item.to === '/'}
             className={({ isActive }) =>
               cn(
-                'rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap',
+                'rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors',
                 isActive ? 'bg-secondary text-secondary-foreground' : 'text-muted-foreground',
               )
             }

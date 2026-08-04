@@ -16,7 +16,7 @@ export function SunAndMoon({ today, timezone }: { today: DailyForecastPoint; tim
   return (
     <section
       aria-label={`${t('weather.sunrise')}, ${t('weather.sunset')}, ${t('weather.daylight')}, ${t('weather.moonPhase')}`}
-      className="glass-card flex flex-wrap gap-6 p-6"
+      className="glass-card animate-in fade-in slide-in-from-bottom-2 ease-expo-out flex flex-wrap gap-6 p-6 duration-300"
     >
       <div className="flex items-center gap-3">
         <Sunrise aria-hidden="true" className="size-6 text-amber-500" />
