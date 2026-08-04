@@ -14,7 +14,8 @@
     "timers": "Timers",
     "settings": "Settings",
     "about": "About",
-    "compare": "Compare"
+    "compare": "Compare",
+    "earthquakes": "Earthquakes"
   },
   "search": {
     "placeholder": "Search for a city...",
@@ -190,6 +191,54 @@
     "emptyBody": "Search for a city to start comparing.",
     "loadError": "Couldn't load weather."
   },
+  "earthquake": {
+    "title": "Earthquakes",
+    "subtitle": "Recent earthquakes reported by the USGS, worldwide.",
+    "filters": {
+      "minMagnitude": "Minimum magnitude",
+      "timeWindow": "Time window",
+      "magnitudeAll": "All",
+      "window24h": "24h",
+      "window7d": "7d",
+      "window30d": "30d"
+    },
+    "magnitudeLevel": {
+      "minor": { "label": "Minor" },
+      "light": { "label": "Light" },
+      "moderate": { "label": "Moderate" },
+      "strong": { "label": "Strong" },
+      "major": { "label": "Major" },
+      "unknown": { "label": "Unknown" }
+    },
+    "place": "Unknown location",
+    "magnitude": "Magnitude",
+    "depth": "Depth",
+    "distanceAway": "{{distance}} away",
+    "viewOnUsgs": "View on USGS",
+    "empty": "No earthquakes matched these filters.",
+    "errorTitle": "Couldn't load earthquake data",
+    "errorBody": "Check your connection and try again — Horizon will keep showing the last data it had.",
+    "retry": "Try again",
+    "truncatedNotice": "Showing the {{count}} most recent results — narrow your filters to see more precise results.",
+    "nearby": {
+      "title": "Nearby earthquakes",
+      "empty": "No earthquakes reported nearby in the last 7 days.",
+      "safetyPrompt": "Earthquake safety information"
+    },
+    "safety": {
+      "title": "Earthquake safety",
+      "intro": "General safety guidance for if the ground starts shaking — not a prediction or early-warning system.",
+      "items": {
+        "1": "Drop where you are, onto your hands and knees.",
+        "2": "Cover your head and neck with your arms. If a sturdy table or desk is nearby, get under it.",
+        "3": "Hold on to your shelter (or your head and neck) until the shaking stops.",
+        "4": "Stay away from windows, mirrors, and tall furniture that could fall.",
+        "5": "If you're outdoors, move to an open area away from buildings, trees, and power lines.",
+        "6": "After the shaking stops, expect aftershocks — check yourself and others for injuries before moving around."
+      }
+    },
+    "attribution": "Earthquake data: U.S. Geological Survey (USGS)"
+  },
   "location": {
     "notFound": "Location not found",
     "notFoundBody": "It may have been removed from your saved locations."
@@ -270,6 +319,10 @@
       "bigDataCloud": {
         "name": "BigDataCloud",
         "use": "Reverse geocoding and IP-based location fallback"
+      },
+      "usgs": {
+        "name": "USGS Earthquake Hazards Program",
+        "use": "Earthquake location, magnitude, depth, and time data"
       }
     }
   }

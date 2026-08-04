@@ -14,7 +14,8 @@
     "timers": "Temporizadores",
     "settings": "Ajustes",
     "about": "Acerca de",
-    "compare": "Comparar"
+    "compare": "Comparar",
+    "earthquakes": "Terremotos"
   },
   "search": {
     "placeholder": "Busca una ciudad...",
@@ -196,6 +197,54 @@
     "emptyBody": "Busca una ciudad para empezar a comparar.",
     "loadError": "No se pudo cargar el clima."
   },
+  "earthquake": {
+    "title": "Terremotos",
+    "subtitle": "Terremotos recientes reportados por el USGS, en todo el mundo.",
+    "filters": {
+      "minMagnitude": "Magnitud mínima",
+      "timeWindow": "Periodo de tiempo",
+      "magnitudeAll": "Todos",
+      "window24h": "24 h",
+      "window7d": "7 d",
+      "window30d": "30 d"
+    },
+    "magnitudeLevel": {
+      "minor": { "label": "Menor" },
+      "light": { "label": "Leve" },
+      "moderate": { "label": "Moderado" },
+      "strong": { "label": "Fuerte" },
+      "major": { "label": "Mayor" },
+      "unknown": { "label": "Desconocido" }
+    },
+    "place": "Ubicación desconocida",
+    "magnitude": "Magnitud",
+    "depth": "Profundidad",
+    "distanceAway": "A {{distance}}",
+    "viewOnUsgs": "Ver en el USGS",
+    "empty": "Ningún terremoto coincide con estos filtros.",
+    "errorTitle": "No se pudieron cargar los datos de terremotos",
+    "errorBody": "Revisa tu conexión e inténtalo de nuevo — Horizon seguirá mostrando los últimos datos disponibles.",
+    "retry": "Reintentar",
+    "truncatedNotice": "Mostrando los {{count}} resultados más recientes — reduce los filtros para ver resultados más precisos.",
+    "nearby": {
+      "title": "Terremotos cercanos",
+      "empty": "No se han reportado terremotos cercanos en los últimos 7 días.",
+      "safetyPrompt": "Información de seguridad ante terremotos"
+    },
+    "safety": {
+      "title": "Seguridad ante terremotos",
+      "intro": "Guía general de seguridad por si empieza a temblar — no es una predicción ni un sistema de alerta temprana.",
+      "items": {
+        "1": "Agáchate donde estés, apoyándote sobre las manos y las rodillas.",
+        "2": "Cúbrete la cabeza y el cuello con los brazos. Si hay una mesa resistente cerca, métete debajo.",
+        "3": "Sujétate a tu refugio (o a tu cabeza y cuello) hasta que el temblor termine.",
+        "4": "Aléjate de ventanas, espejos y muebles altos que puedan caerse.",
+        "5": "Si estás al aire libre, dirígete a un espacio abierto lejos de edificios, árboles y cables eléctricos.",
+        "6": "Cuando termine el temblor, espera réplicas — revisa si tú u otras personas tienen heridas antes de moverte."
+      }
+    },
+    "attribution": "Datos de terremotos: Servicio Geológico de los Estados Unidos (USGS)"
+  },
   "location": {
     "notFound": "Ubicación no encontrada",
     "notFoundBody": "Puede que se haya eliminado de tus ubicaciones guardadas."
@@ -276,6 +325,10 @@
       "bigDataCloud": {
         "name": "BigDataCloud",
         "use": "Geocodificación inversa y localización de respaldo por IP"
+      },
+      "usgs": {
+        "name": "USGS Earthquake Hazards Program",
+        "use": "Datos de ubicación, magnitud, profundidad y hora de terremotos"
       }
     }
   }

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { SITE_URL, OG_IMAGE_URL } from '@/lib/seo'
 
-const DATA_SOURCE_KEYS = ['openMeteo', 'openMeteoGeocoding', 'bigDataCloud'] as const
+const DATA_SOURCE_KEYS = ['openMeteo', 'openMeteoGeocoding', 'bigDataCloud', 'usgs'] as const
 
 export default function About() {
   const { t } = useTranslation()

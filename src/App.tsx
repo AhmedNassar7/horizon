@@ -10,6 +10,7 @@ const Planner = lazy(() => import('@/pages/Planner'))
 const Timers = lazy(() => import('@/pages/Timers'))
 const Settings = lazy(() => import('@/pages/Settings'))
 const About = lazy(() => import('@/pages/About'))
+const Earthquakes = lazy(() => import('@/pages/Earthquakes'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/timers" element={<Timers />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/about" element={<About />} />
+        <Route path="/earthquakes" element={<Earthquakes />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useMemo } from 'react'
 import { useWeather, useAirQuality } from '@/hooks/useWeather'
+import { useNearbyEarthquakes } from '@/hooks/useEarthquakes'
 import { resolveTimezone } from '@/lib/timezone'
 import { computeAdvisories } from '@/lib/advisories'
 import { CurrentConditions } from '@/components/weather/CurrentConditions'
@@ -8,9 +9,11 @@ import { WeatherBackgroundFallback } from '@/components/weather/WeatherBackgroun
 import { WeatherAdvisories } from '@/components/weather/WeatherAdvisories'
 import { SunAndMoon } from '@/components/weather/SunAndMoon'
 import { AirQuality } from '@/components/weather/AirQuality'
+import { NearbyEarthquakes } from '@/components/weather/NearbyEarthquakes'
 import { WeatherSkeleton } from '@/components/weather/WeatherSkeleton'
 import { WeatherErrorState } from '@/components/weather/WeatherErrorState'
 import { Clock } from '@/components/time/Clock'
+import { useSettingsStore } from '@/store/settingsStore'
 import type { SavedLocation } from '@/store/locationStore'
 
 // Recharts is the single heaviest dependency in this dashboard; splitting it
@@ -38,6 +41,12 @@ const LocationMap = lazy(() =>
   import('@/components/weather/LocationMap').then((m) => ({ default: m.LocationMap })),
 )
 
+// Fixed, non-user-configurable defaults for the dashboard's "nearby" card —
+// the full filterable experience lives on the /earthquakes page instead.
+const EARTHQUAKE_RADIUS_KM = 300
+const EARTHQUAKE_MIN_MAGNITUDE = 2.5
+const EARTHQUAKE_WINDOW_MS = 7 * 24 * 60 * 60 * 1000
+
 export function LocationDashboard({
   location,
   showClock = true,
@@ -52,6 +61,14 @@ export function LocationDashboard({
 }) {
   const weather = useWeather(location.latitude, location.longitude)
   const airQuality = useAirQuality(location.latitude, location.longitude)
+  const earthquakes = useNearbyEarthquakes(
+    location.latitude,
+    location.longitude,
+    EARTHQUAKE_RADIUS_KM,
+    EARTHQUAKE_MIN_MAGNITUDE,
+    EARTHQUAKE_WINDOW_MS,
+  )
+  const windUnit = useSettingsStore((s) => s.windUnit)
 
   const timezone = useMemo(
     () => resolveTimezone(location.latitude, location.longitude),
@@ -131,6 +148,9 @@ export function LocationDashboard({
               />
             </Suspense>
             {airQuality.data && <AirQuality data={airQuality.data} />}
+            {earthquakes.data && (
+              <NearbyEarthquakes data={earthquakes.data} location={location} windUnit={windUnit} />
+            )}
           </div>
         </div>
       )}

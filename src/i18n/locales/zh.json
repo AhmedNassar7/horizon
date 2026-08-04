@@ -14,7 +14,8 @@
     "timers": "计时器",
     "settings": "设置",
     "about": "关于",
-    "compare": "对比"
+    "compare": "对比",
+    "earthquakes": "地震"
   },
   "search": {
     "placeholder": "搜索城市...",
@@ -184,6 +185,54 @@
     "emptyBody": "搜索城市即可开始对比。",
     "loadError": "无法加载天气。"
   },
+  "earthquake": {
+    "title": "地震",
+    "subtitle": "美国地质调查局（USGS）报告的全球最新地震。",
+    "filters": {
+      "minMagnitude": "最小震级",
+      "timeWindow": "时间范围",
+      "magnitudeAll": "全部",
+      "window24h": "24小时",
+      "window7d": "7天",
+      "window30d": "30天"
+    },
+    "magnitudeLevel": {
+      "minor": { "label": "轻微" },
+      "light": { "label": "较小" },
+      "moderate": { "label": "中等" },
+      "strong": { "label": "强烈" },
+      "major": { "label": "重大" },
+      "unknown": { "label": "未知" }
+    },
+    "place": "未知位置",
+    "magnitude": "震级",
+    "depth": "深度",
+    "distanceAway": "距离 {{distance}}",
+    "viewOnUsgs": "在 USGS 上查看",
+    "empty": "没有符合筛选条件的地震。",
+    "errorTitle": "无法加载地震数据",
+    "errorBody": "请检查网络连接后重试 — Horizon 会继续显示最近一次获取的数据。",
+    "retry": "重试",
+    "truncatedNotice": "正在显示最近的 {{count}} 条结果 — 请缩小筛选范围以查看更精确的结果。",
+    "nearby": {
+      "title": "附近的地震",
+      "empty": "过去7天内附近没有报告地震。",
+      "safetyPrompt": "地震安全信息"
+    },
+    "safety": {
+      "title": "地震安全",
+      "intro": "如果发生地震摇晃时的一般安全指南 — 这不是预测，也不是预警系统。",
+      "items": {
+        "1": "就地趴下，双手双膝着地。",
+        "2": "用手臂护住头部和颈部；如果附近有坚固的桌子，躲到桌子下面。",
+        "3": "抓牢你的掩护物（或护住头颈），直到摇晃停止。",
+        "4": "远离窗户、镜子和可能倒塌的高大家具。",
+        "5": "如果在室外，请转移到远离建筑物、树木和电线的开阔地带。",
+        "6": "摇晃停止后，要预计会有余震 — 在移动前先检查自己和他人是否受伤。"
+      }
+    },
+    "attribution": "地震数据来自：美国地质调查局（USGS）"
+  },
   "location": {
     "notFound": "未找到该地点",
     "notFoundBody": "它可能已从你保存的地点中移除。"
@@ -255,7 +304,8 @@
     "sources": {
       "openMeteo": { "name": "Open-Meteo", "use": "实时天气、每小时/每日预报、空气质量、天气提醒" },
       "openMeteoGeocoding": { "name": "Open-Meteo 地理编码", "use": "城市搜索与坐标定位" },
-      "bigDataCloud": { "name": "BigDataCloud", "use": "反向地理编码及基于 IP 的位置回退方案" }
+      "bigDataCloud": { "name": "BigDataCloud", "use": "反向地理编码及基于 IP 的位置回退方案" },
+      "usgs": { "name": "USGS 地震灾害计划", "use": "地震位置、震级、深度和时间数据" }
     }
   }
 }

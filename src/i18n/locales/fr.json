@@ -14,7 +14,8 @@
     "timers": "Minuteries",
     "settings": "Réglages",
     "about": "À propos",
-    "compare": "Comparer"
+    "compare": "Comparer",
+    "earthquakes": "Séismes"
   },
   "search": {
     "placeholder": "Rechercher une ville...",
@@ -193,6 +194,54 @@
     "emptyBody": "Recherchez une ville pour commencer à comparer.",
     "loadError": "Impossible de charger la météo."
   },
+  "earthquake": {
+    "title": "Séismes",
+    "subtitle": "Séismes récents signalés par l'USGS, dans le monde entier.",
+    "filters": {
+      "minMagnitude": "Magnitude minimale",
+      "timeWindow": "Période",
+      "magnitudeAll": "Tous",
+      "window24h": "24 h",
+      "window7d": "7 j",
+      "window30d": "30 j"
+    },
+    "magnitudeLevel": {
+      "minor": { "label": "Mineur" },
+      "light": { "label": "Léger" },
+      "moderate": { "label": "Modéré" },
+      "strong": { "label": "Fort" },
+      "major": { "label": "Majeur" },
+      "unknown": { "label": "Inconnu" }
+    },
+    "place": "Lieu inconnu",
+    "magnitude": "Magnitude",
+    "depth": "Profondeur",
+    "distanceAway": "À {{distance}}",
+    "viewOnUsgs": "Voir sur l'USGS",
+    "empty": "Aucun séisme ne correspond à ces filtres.",
+    "errorTitle": "Impossible de charger les données sismiques",
+    "errorBody": "Vérifiez votre connexion et réessayez — Horizon continuera d'afficher les dernières données disponibles.",
+    "retry": "Réessayer",
+    "truncatedNotice": "Affichage des {{count}} résultats les plus récents — affinez les filtres pour des résultats plus précis.",
+    "nearby": {
+      "title": "Séismes à proximité",
+      "empty": "Aucun séisme signalé à proximité au cours des 7 derniers jours.",
+      "safetyPrompt": "Informations de sécurité en cas de séisme"
+    },
+    "safety": {
+      "title": "Sécurité en cas de séisme",
+      "intro": "Conseils de sécurité généraux en cas de secousses — il ne s'agit pas d'une prédiction ni d'un système d'alerte précoce.",
+      "items": {
+        "1": "Baissez-vous là où vous êtes, sur vos mains et vos genoux.",
+        "2": "Protégez votre tête et votre nuque avec vos bras. S'il y a une table solide à proximité, mettez-vous dessous.",
+        "3": "Accrochez-vous à votre abri (ou à votre tête et votre nuque) jusqu'à la fin des secousses.",
+        "4": "Éloignez-vous des fenêtres, miroirs et meubles hauts qui pourraient tomber.",
+        "5": "Si vous êtes à l'extérieur, dirigez-vous vers un espace dégagé, loin des bâtiments, des arbres et des lignes électriques.",
+        "6": "Une fois les secousses terminées, attendez-vous à des répliques — vérifiez que vous et les autres n'êtes pas blessés avant de bouger."
+      }
+    },
+    "attribution": "Données sismiques : U.S. Geological Survey (USGS)"
+  },
   "location": {
     "notFound": "Lieu introuvable",
     "notFoundBody": "Il a peut-être été supprimé de vos lieux enregistrés."
@@ -273,6 +322,10 @@
       "bigDataCloud": {
         "name": "BigDataCloud",
         "use": "Géocodage inverse et localisation de secours par IP"
+      },
+      "usgs": {
+        "name": "USGS Earthquake Hazards Program",
+        "use": "Données de localisation, magnitude, profondeur et heure des séismes"
       }
     }
   }

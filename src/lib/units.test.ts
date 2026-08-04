@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   celsiusTo,
   degreesToCompass,
+  formatDistance,
   formatTemperature,
   formatVisibility,
   formatWindSpeed,
@@ -56,6 +57,28 @@ describe('formatVisibility', () => {
 
   it('handles missing data', () => {
     expect(formatVisibility(null, 'kmh')).toBe('—')
+  })
+})
+
+describe('formatDistance', () => {
+  it('formats in kilometers by default', () => {
+    expect(formatDistance(10, 'kmh')).toBe('10 km')
+  })
+
+  it('formats in kilometers for knots too', () => {
+    expect(formatDistance(10, 'kn')).toBe('10 km')
+  })
+
+  it('formats in miles when the wind unit is mph', () => {
+    expect(formatDistance(16.09344, 'mph')).toBe('10 mi')
+  })
+
+  it('keeps one decimal place under 10 units', () => {
+    expect(formatDistance(4.8, 'kmh')).toBe('4.8 km')
+  })
+
+  it('handles missing data', () => {
+    expect(formatDistance(null, 'kmh')).toBe('—')
   })
 })
 

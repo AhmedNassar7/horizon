@@ -177,6 +177,92 @@ function findCityForCoords(latitude: string | null, longitude: string | null): F
   }, CITY_INDEX[0]!)
 }
 
+export interface FixtureEarthquake {
+  id: string
+  place: string
+  magnitude: number
+  /** Resolved to an absolute epoch-ms `time` when the response is built
+   * (not at module load), mirroring isoHourStrings()'s pattern above — so
+   * "N hours/days ago" assertions in specs stay stable regardless of when
+   * the test suite actually runs. */
+  ageMs: number
+  latitude: number
+  longitude: number
+  depthKm: number
+  tsunami: 0 | 1
+  significance: number
+  magType: string
+}
+
+// Deliberately within 300km of LONDON's coordinates (see the nearby-card's
+// fixed radius in useEarthquakes.ts) so the dashboard-card spec has a
+// deterministic nearby result to assert on.
+export const NEAR_LONDON_EARTHQUAKE: FixtureEarthquake = {
+  id: 'test-near-london',
+  place: 'Kent, England',
+  magnitude: 3.2,
+  ageMs: 3 * 60 * 60 * 1000, // 3 hours ago
+  latitude: 51.0,
+  longitude: 0.5,
+  depthKm: 10,
+  tsunami: 0,
+  significance: 200,
+  magType: 'ml',
+}
+
+export const STRONG_EARTHQUAKE: FixtureEarthquake = {
+  id: 'test-strong',
+  place: '128km SSE of Tokyo, Japan',
+  magnitude: 6.5,
+  ageMs: 30 * 60 * 1000, // 30 minutes ago
+  latitude: 34.9,
+  longitude: 141.0,
+  depthKm: 35,
+  tsunami: 1,
+  significance: 780,
+  magType: 'mww',
+}
+
+export const MODERATE_EARTHQUAKE: FixtureEarthquake = {
+  id: 'test-moderate',
+  place: '64km W of Ridgecrest, CA',
+  magnitude: 4.8,
+  ageMs: 26 * 60 * 60 * 1000, // just over a day ago
+  latitude: 35.6,
+  longitude: -117.9,
+  depthKm: 8,
+  tsunami: 0,
+  significance: 350,
+  magType: 'ml',
+}
+
+function earthquakeFeature(eq: FixtureEarthquake) {
+  return {
+    id: eq.id,
+    properties: {
+      mag: eq.magnitude,
+      place: eq.place,
+      time: Date.now() - eq.ageMs,
+      url: `https://earthquake.usgs.gov/earthquakes/eventpage/${eq.id}`,
+      tsunami: eq.tsunami,
+      sig: eq.significance,
+      magType: eq.magType,
+    },
+    geometry: {
+      type: 'Point',
+      // [longitude, latitude, depthKm] — GeoJSON's coordinate order.
+      coordinates: [eq.longitude, eq.latitude, eq.depthKm],
+    },
+  }
+}
+
+export function buildEarthquakeResponse(features: FixtureEarthquake[]) {
+  return {
+    type: 'FeatureCollection',
+    features: features.map(earthquakeFeature),
+  }
+}
+
 /**
  * Installs route interception for every external API Horizon talks to
  * (Open-Meteo geocoding/forecast/air-quality, BigDataCloud reverse geocode).
@@ -218,4 +304,17 @@ export async function installApiMocks(page: Page) {
   // hit by Home's silent background auto-locate-on-empty-state attempt.
   // Fail it fast and deterministically rather than let it hang or flake.
   await page.route('https://api.bigdatacloud.net/**', (route) => route.abort('failed'))
+
+  // The nearby-card query includes `latitude`/`longitude` (see
+  // useNearbyEarthquakes); the global page's query omits them entirely —
+  // branch on that to decide which fixture set to serve, mirroring the
+  // forecast/air-quality handlers' coordinate-based branching above.
+  await page.route('https://earthquake.usgs.gov/fdsnws/event/1/query**', async (route) => {
+    const url = new URL(route.request().url())
+    const isNearby = url.searchParams.has('latitude') && url.searchParams.has('longitude')
+    const features = isNearby
+      ? [NEAR_LONDON_EARTHQUAKE]
+      : [STRONG_EARTHQUAKE, NEAR_LONDON_EARTHQUAKE, MODERATE_EARTHQUAKE]
+    await route.fulfill({ json: buildEarthquakeResponse(features) })
+  })
 }

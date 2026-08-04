@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { to: '/clocks', key: 'clocks' as const },
   { to: '/planner', key: 'planner' as const },
   { to: '/timers', key: 'timers' as const },
+  { to: '/earthquakes', key: 'earthquakes' as const },
 ]
 
 export function Header() {

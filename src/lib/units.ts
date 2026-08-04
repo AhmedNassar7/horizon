@@ -55,6 +55,22 @@ export function formatVisibility(meters: number | null, windUnit: WindUnit, loca
   return `${value.toLocaleString(locale, { maximumFractionDigits })} ${label}`
 }
 
+const KM_TO_MI = 1 / 1.609344
+
+/**
+ * Sibling to formatVisibility, but takes kilometers directly (e.g. distance
+ * to an earthquake epicenter) instead of meters. Same metric/imperial split
+ * keyed off windUnit, since there's no dedicated distance-unit setting.
+ */
+export function formatDistance(km: number | null, windUnit: WindUnit, locale = 'en'): string {
+  if (km == null) return '—'
+  const useMiles = windUnit === 'mph'
+  const value = useMiles ? km * KM_TO_MI : km
+  const label = useMiles ? 'mi' : 'km'
+  const maximumFractionDigits = value < 10 ? 1 : 0
+  return `${value.toLocaleString(locale, { maximumFractionDigits })} ${label}`
+}
+
 const COMPASS_DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
 
 export function degreesToCompass(deg: number): string {
