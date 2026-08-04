@@ -83,15 +83,17 @@ export default function Home() {
           {/* Search and the clock used to live in two separate rows with two
               different max-widths (this row capped at max-w-3xl, the clock
               full-width-right-aligned inside LocationDashboard's max-w-6xl)
-              — visually that left a large, unbalanced gap between them.
-              They're a single row now, capped together at max-w-4xl so the
-              header stays a reasonably-sized, centered unit distinct from
-              the wider max-w-6xl dashboard grid below (an uncapped row would
-              stretch the search input edge-to-edge on wide screens, which is
-              its own kind of awkward). Stacked on mobile, side by side from
-              sm up. LocationDashboard's own clock row is suppressed
-              (`showClock={false}`) since this one already covers it. */}
-          <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 sm:flex-row sm:items-center">
+              — visually that left a large, unbalanced gap between them. A
+              later version capped this row at max-w-4xl and re-centered it,
+              which fixed the gap but introduced a new mismatch: this row's
+              edges landed inset from the dashboard grid's edges below it
+              (same max-w-6xl parent, but the grid isn't independently
+              capped/centered). This row now spans the full width of that
+              same parent, so its edges line up with the grid's. Stacked on
+              mobile, side by side from sm up. LocationDashboard's own clock
+              row is suppressed (`showClock={false}`) since this one already
+              covers it. */}
+          <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center">
             {/* glass-card, not a bare flex row: this sits directly over the
                 weather-reactive gradient background (LocationDashboard below
                 renders it fixed/full-viewport). The search input is
@@ -101,10 +103,10 @@ export default function Home() {
                 THEME — can land unreadably close to the gradient's own color
                 when the gradient's day/night stop doesn't match the theme
                 (e.g. light theme + night). */}
-            <div className="glass-card flex min-w-0 flex-1 flex-wrap items-center justify-between gap-4 p-3">
-              <CitySearch onSelect={handleSelectCity} />
+            <div className="glass-card flex min-w-0 flex-1 items-center gap-4 p-3">
+              <CitySearch onSelect={handleSelectCity} className="min-w-0 flex-1" />
               {locations.length > 1 && (
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="outline" size="sm" className="shrink-0">
                   <Link to="/compare">{t('nav.compare')}</Link>
                 </Button>
               )}

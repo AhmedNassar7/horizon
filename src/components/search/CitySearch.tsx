@@ -30,7 +30,16 @@ function ActiveOptionSync({ onActiveChange }: { onActiveChange: (id: string) => 
   return null
 }
 
-export function CitySearch({ onSelect }: { onSelect: (city: CityResult) => void }) {
+export function CitySearch({
+  onSelect,
+  className = 'w-full max-w-md',
+}: {
+  onSelect: (city: CityResult) => void
+  // Lets call sites that sit in a flex row (e.g. Home's search+clock header)
+  // stretch the input to fill available space instead of the default
+  // fixed-width cap, without affecting the other call sites relying on it.
+  className?: string
+}) {
   const { t } = useTranslation()
   const [query, setQuery] = useState('')
   const [activeOptionId, setActiveOptionId] = useState('')
@@ -62,7 +71,7 @@ export function CitySearch({ onSelect }: { onSelect: (city: CityResult) => void 
     <Command shouldFilter={false} className="contents">
       <Popover open={isOpen}>
         <PopoverAnchor asChild>
-          <div className="relative w-full max-w-md">
+          <div className={`relative ${className}`}>
             <label htmlFor={inputId} className="sr-only">
               {t('search.placeholder')}
             </label>
