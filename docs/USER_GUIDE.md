@@ -17,6 +17,8 @@ flowchart TD
     J --> K["Meeting planner\nshared business-hour overlap"]
     F --> L["Timers / Stopwatch\n(independent of saved locations)"]
     F --> M["Settings\ntheme · units · language"]
+    F --> N["Earthquakes page\nglobal map + list (USGS)"]
+    F --> O["Nearby earthquakes card\non each saved location"]
 ```
 
 ## Getting started
@@ -42,6 +44,17 @@ Search adds a new location and makes it active. Add a second (or more) to unlock
 - **World clocks** — a live-updating clock per saved location.
 - **Meeting planner** — a shared 24-hour grid across all your saved locations, highlighting the hours that fall in everyone's business hours (9am–5pm).
 - **Time difference** — pick any two cities and see how far apart they are, right now.
+
+## Earthquakes
+
+Two ways to see recent seismic activity, both sourced live from the **USGS** (U.S. Geological Survey):
+
+- **Earthquakes page** (nav bar) — a world map of recent events, color-coded by magnitude, with a matching list. Filter by **minimum magnitude** and **time window**.
+- **Nearby earthquakes card** — on every saved location's dashboard, shows the closest recent events with distance and time since each one.
+
+Each event links to its official USGS report. A **safety checklist** (drop, cover, hold on) is included for reference.
+
+**Important:** this is reporting, not prediction. Events appear only after USGS confirms them — typically minutes after the fact. There is no early-warning or "detected near you" alert.
 
 ## Timers & stopwatch
 

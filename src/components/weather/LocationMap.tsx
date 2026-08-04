@@ -256,7 +256,14 @@ function LeafletMapPane({
     }).setView([latitude, longitude], CITY_ZOOM)
     mapRef.current = map
 
-    const marker = L.marker([latitude, longitude], { icon: PIN_ICON }).addTo(map)
+    // Leaflet always makes marker icons keyboard-focusable (role="button"
+    // tabindex="0"), but only derives an accessible name automatically for
+    // <img>-based icons — PIN_ICON is a divIcon (see its own comment above
+    // for why), so without an explicit `title` it reaches assistive tech as
+    // an unlabeled button. Leaflet applies `title` as a native HTML `title`
+    // attribute on the icon element regardless of icon type, which satisfies
+    // the accessible-name requirement.
+    const marker = L.marker([latitude, longitude], { icon: PIN_ICON, title: name }).addTo(map)
     marker.bindPopup(name)
     // Clicking the primary marker must only open its own popup, never also
     // trigger click-to-explore for the same click. Leaflet markers with a
@@ -310,6 +317,7 @@ function LeafletMapPane({
   useEffect(() => {
     const marker = markerRef.current
     marker?.setPopupContent(name)
+    marker?.getElement()?.setAttribute('title', name)
   }, [name])
 
   // Swap the active tile layer in place when the theme changes, rather than

@@ -20,6 +20,11 @@ A fast, installable, client-only weather + world-time PWA — no backend, no acc
 | Desktop                                                                                                                                                                   | Mobile                                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ![Horizon dashboard on desktop, light theme, showing current conditions, hourly and 7-day forecast, and air quality for London](./docs/screenshots/dashboard-desktop.png) | ![Horizon dashboard on mobile, light theme, same data in a single-column responsive layout](./docs/screenshots/dashboard-mobile.png) |
+| ![Global Earthquakes page on desktop: a world map of recent events color-coded by magnitude, filters, and safety guidance](./docs/screenshots/earthquakes-desktop.png)    | ![Earthquakes page on mobile, same map and filters in a single column](./docs/screenshots/earthquakes-mobile.png)                    |
+
+<img src="./docs/screenshots/earthquakes-card.png" alt="Nearby earthquakes card on a location dashboard, showing magnitude, distance, and time since each event" width="360" />
+
+_Live USGS data, not a mock._
 
 ## What it is
 
@@ -35,7 +40,7 @@ flowchart LR
 
     subgraph Browser["Browser (client-only)"]
         UI["UI components\n(pages, weather/time widgets)"]
-        Query["TanStack Query hooks\nuseWeather / useCitySearch / useGeolocation"]
+        Query["TanStack Query hooks\nuseWeather / useCitySearch / useGeolocation / useEarthquakes"]
         Zustand["Zustand stores\nlocationStore · settingsStore · timezoneStore"]
         i18nLib["i18next\n(language + RTL)"]
         Theme["Theme engine\n(light / dark / system)"]
@@ -46,6 +51,7 @@ flowchart LR
     OpenMeteo["Open-Meteo\nforecast + air quality API"]
     Geocoding["Open-Meteo Geocoding\ncity search"]
     BigDataCloud["BigDataCloud\nreverse geocoding"]
+    USGS["USGS\nearthquake reports"]
 
     User --> UI
     UI --> Query
@@ -55,6 +61,7 @@ flowchart LR
     Query -- "fetch + Zod-validate" --> OpenMeteo
     Query -- "fetch + Zod-validate" --> Geocoding
     Query -- "fetch + Zod-validate" --> BigDataCloud
+    Query -- "fetch + Zod-validate" --> USGS
     SW -. "NetworkFirst cache" .-> OpenMeteo
     SW -. "NetworkFirst cache" .-> BigDataCloud
     Zustand <--> LS
@@ -66,6 +73,7 @@ flowchart LR
 ## Highlights
 
 - **Weather** — current conditions, hourly + 7-day forecast, air quality, sunrise/sunset & moon phase, severity-coded advisories, multi-location compare
+- **Earthquakes** — global map + list of recent events from **USGS**, magnitude/time filters, a "near you" card per saved location, and a safety checklist — reporting only, never a prediction or early-warning claim
 - **Time** — live world clocks, meeting planner (business-hour overlap across cities), time-difference calculator, timers & stopwatch
 - **Platform** — installable offline-capable PWA, 5 languages including Arabic (RTL), light/dark/system theme, metric/imperial units
 

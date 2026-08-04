@@ -24,7 +24,7 @@ See the [Architecture & data flow section of the README](../README.md#architectu
 
 ```
 src/
-  api/            # fetch + Zod validation, provider adapters (Open-Meteo, geocoding)
+  api/            # fetch + Zod validation, provider adapters (Open-Meteo, geocoding, USGS earthquakes)
   components/     # layout, search, time, weather, and shadcn/ui primitives
   hooks/          # useWeather, useCitySearch, useGeolocation, useTheme, ...
   i18n/           # i18next setup + locales/{en,es,fr,ar,zh}.json
@@ -49,7 +49,7 @@ npm run preview       # serve the production build locally
 ```bash
 npm run test           # Vitest — unit + component tests
 npm run test:watch     # Vitest in watch mode
-npm run test:e2e       # Playwright — end-to-end suite (city search, weather display, time suite, theme toggle, PWA)
+npm run test:e2e       # Playwright — end-to-end suite (city search, weather display, earthquakes, time suite, theme toggle, PWA)
 npm run test:e2e:ui    # Playwright with its UI runner
 ```
 
